@@ -6,11 +6,12 @@ a table is a ``Manual`` table representing manually entered data (either by huma
 system). A table always belongs to a **schema** which helps to organize tables into groups. By placing related
 tables into one **schema** you can keep your data pipeline well structured.
 
-.. warning::
-  This tutorial assumes that you are using a local database server running in a Docker container as was set
-  in :doc:`/setting-up/local_database`. If you want to use a different database server, simply change your
-  connection details when following this tutorial. Depending on your permission, you might have to change
-  the name of schemas and/or tables.
+.. note::
+
+  This tutorial assumes that you already have a database server that you can connect to and that you have installed DataJoint
+  for Python. If either of this is not true, be sure to checkout our :doc:`Getting Started Tutorial </setting-up/introduction>`
+  first before proceeding with this tutorial!
+
 
 Creating schema
 ---------------
@@ -26,28 +27,37 @@ Set up your connection to the database server.
 
 .. code-block:: python
 
-  dj.config['database.host'] = '127.0.0.1'
-  dj.config['database.user'] = 'root'
-  dj.config['databas.password'] = 'tutorial'
+  dj.config['database.host'] = 'HOST_ADDRESS'
+  dj.config['database.user'] = 'USER_NAME'
+  dj.config['databas.password'] = 'PASSWORD'
+
 
 .. note::
-  Rather than having to set up the connection every time, you can save your configuration into a DataJont
-  configuration file that can be loaded automatically when using DataJoint. Refer to :doc:`/beginner/saving-config`
-  on how to use this feature.
+  If you need a review on how to connect to the database from DataJoint, checkout :doc:`/setting-up/datajoint-python`
 
-Let's create our first schema called `dj_tutorial`
+
+Let's create our first schema called `tutorial`!
+
 
 .. code-block:: python
 
-  schema = dj.schema('dj_tutorial', locals())
+  schema = dj.schema('tutorial', locals())
+
+.. note::
+  If you are connected to the tutorial database hosted by `DataJoint.io <https://datajoint.io>`_, you will have to prefix 
+  all schema name with ``username_`` substituting in the username for the connection. For example, if your username is 
+  ``johndoe``, then you would want to run the following command instead:
+
+  .. code-block:: python
+    
+    schema = dj.schema('johndoe_tutorial', locals())
+
+And that's it! We have just created a schema in the database, and now we can now begin creating tables inside of this schema!
 
 .. note::
   Passing in ``locals()`` allows ``schema`` object to have access to all tables that you define in the local
-  name space (e.g. interative session). This allows tables to refer to each other simply by their name. For
-  more details refer to 
+  name space (e.g. interative session). This allows tables to refer to each other simply by their name. 
 
-.. warning::
-  fill out links here
 
 Defining table class
 --------------------

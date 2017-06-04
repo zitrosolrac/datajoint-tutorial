@@ -22,7 +22,7 @@ http://docs.datajoint.io.
    :caption: Getting Started
 
    setting-up/introduction
-   setting-up/local_database
+   setting-up/get-database
    setting-up/datajoint-python
    setting-up/datajoint-matlab
 
