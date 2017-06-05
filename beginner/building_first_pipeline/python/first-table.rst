@@ -1,9 +1,7 @@
 Defining your first table
 =========================
 
-Every pipeline is composed of one or more **tables**. Each table represents a specific set of data. Most commonly
-a table is a ``Manual`` table representing manually entered data (either by human or by automated data entry
-system). A table always belongs to a **schema** which helps to organize tables into groups. By placing related
+Every pipeline is composed of one or more **tables**. Each table represents a specific set of data. In the simplest situation, a table can contain data entered either manually by a human or automatically by some other piece of software. These ``Manual`` tables are similar to a spreadsheet in Excel, for example. A table always belongs to a **schema** which helps to organize tables into groups. By placing related
 tables into one **schema** you can keep your data pipeline well structured.
 
 .. note::
@@ -16,7 +14,7 @@ tables into one **schema** you can keep your data pipeline well structured.
 Creating schema
 ---------------
 
-Let's get started by import DataJoint and creating a new schema to define tables in. Open up an interactive
+Let's get started by importing DataJoint and creating a new schema to define tables in. Open up an interactive
 Python console and import ``datajoint``:
 
 .. code-block:: python
@@ -52,7 +50,7 @@ Let's create our first schema called `tutorial`!
     
     schema = dj.schema('johndoe_tutorial', locals())
 
-And that's it! We have just created a schema in the database, and now we can now begin creating tables inside of this schema!
+And that's it! We have just created a schema in the database, and now we can now begin creating tables inside of this schema.
 
 .. note::
   Passing in ``locals()`` allows ``schema`` object to have access to all tables that you define in the local
@@ -62,8 +60,7 @@ And that's it! We have just created a schema in the database, and now we can now
 Defining table class
 --------------------
 
-Now we will use the ``schema`` object to create a new table. Since every thing about our mouse experiments
-revolves around, well, mouse, let's create a table to enter and track all mouse we will work with:
+Now we will use the ``schema`` object to create a new table. In our hypothetical example, everything starts with a particular mouse. So let's create a table to enter and track all the mice we will work with:
 
 .. code-block:: python
 
@@ -76,13 +73,13 @@ revolves around, well, mouse, let's create a table to enter and track all mouse 
         gender: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
         """
 
-and it turns out that this is enough to define a table! There is a lot going on here, so let's walk through
+and it turns out that this is enough to define a table! There is actually a lot going on here, so let's walk through
 this code step by step.
 
 Table classes
 ^^^^^^^^^^^^^
-In DataJoint, tables are defined and accessed via **classes** inheriting from one of table superclasses
-provided by DataJoint. Since we will be entering data about a new mice manually, we want to create a table
+In DataJoint, tables are defined and accessed via **classes** inheriting from one of the table superclasses
+provided by DataJoint. Since we will be entering data about new mice manually, we want to create a table
 called "Mouse" as a manual table. You do so by defining a class called ``Mouse`` and inheriting from 
 ``dj.Manual`` super-class.
 
@@ -107,7 +104,7 @@ Table comment
 +++++++++++++
 
 The very first line of the definition starts with a comment that describes what this table is about. Although
-this is optional, leaving a meaninful comment here can be really helpful especially when you start defining
+this is optional, leaving a meaningful comment here can be really helpful when you start defining
 increasingly complex tables.
 
 Attribute (column) definition
@@ -136,11 +133,11 @@ specify the **data type** of the attribute. This determines what kind of data ca
 
 For `mouse_id`, we have chosen type ``int`` which can hold integers between -2147483648 and 2147483647, with
 the exact range depending on your database server. Since we don't expect to have that many mice, ``int`` is
-a safe choice for holding numerical ID for the mouse. 
+a safe choice for holding the numerical ID for the mouse. 
 
 At the end of the definition, you can give a comment describing what this attribute stores. Although this is optional, it is strongly recommended that
 you add a brief comment to help remind everyone (including yourself!) what that field is about. A good combination
-of well thought out attribute name and a good comment can help make your table very readable.
+of a well thought-out attribute name and a good comment can help make your table very readable.
 
 Primary vs non-primary key attributes
 +++++++++++++++++++++++++++++++++++++
@@ -158,11 +155,11 @@ Primary vs non-primary key attributes
 
 The ``---`` separator separates two types of attributes in the table. Above the line are your **primary-key
 attributes**. These attributes are used to **uniquely identify** entries in the table. Within a table, the
-combination of the primary-key attributes values **must be unique**. In this case, we only have on attribute
-in the primary key (``mouse_id``) and thus every entry in the table must have distinct ``mouse_id``,
+combination of the primary-key attributes values **must be unique**. In this case, we only have one attribute
+in the primary key (``mouse_id``) and thus every entry in the table must have a distinct ``mouse_id``,
 corresponding to actual mouse.
 
-Below the ``---`` separator are **non primary-key attributes**. As you would guess, these are attributes
+Below the ``---`` separator are **non-primary-key attributes**. As you would guess, these are attributes
 that are **not** used to identify the mouse. Typically, these attributes hold values that describe the entry
 (in this case a mouse) identified by the primary-key (``mouse_id``).
 
@@ -192,7 +189,7 @@ Creating the table in the data pipeline
 ---------------------------------------
 
 Now we have gone through the table class definition in some detail, let's actually create the table in the
-database server, thus defining the first node in our data pipeline! You do so by simply creating an instance
+database server, thus defining the first node in our data pipeline. All we have to do is create an instance
 of the table class:
 
 .. code-block:: python
@@ -210,18 +207,18 @@ happened, enter the table object by itself:
 
  (0 tuples)
 
-You should get a print out displaying the table content, verifying that you indeed have defined a table in
-the pipeline!
+You should get a display of the table's contents, verifying that you indeed have defined a table in
+the pipeline.
 
 .. note::
   If this is not the fist time going through this section of the tutorial, chances are you already have
   the table ``Mouse`` defined in the schema ``dj_tutorial``. This is completely fine! If you define the
   class ``Mouse`` and instantiate it, the ``mouse`` instance will point to the same table you defined
-  the first time you went through this tutorial! 
+  the first time you went through this tutorial.
 
 What if I make a mistake?
 -------------------------
-As you work through this tutorial, you might occasionally define and create a table with some errors.
+As you work through this tutorial, you might occasionally create a table with some errors.
 Most commonly, you might create a table before you are completely done with the table ``definition``.
 Although there are ways to update the table definition, it is usually best to simply delete or **drop**
 the table with error and redefine the table after correcting your mistakes.
@@ -239,14 +236,14 @@ For example, you might have made a spelling error in your definition:
         gend: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
         """
 
-Notice that both ``mouse_id`` and ``gender`` attributes are spelled incorrectly! If you don't notice such
+Notice that both ``mouse_id`` and ``gender`` attributes are spelled incorrectly! If you don't notice the
 error before you instantiated your table class:
 
 .. code-block:: python
   
   mouse = Mouse()   # instantiating table with errors in definition
 
-Then your table will be defined in the data pipeline containing these mistaked:
+Then your table will be defined in the data pipeline containing these mistakes:
 
 .. code-block:: python
 
@@ -257,10 +254,10 @@ Then your table will be defined in the data pipeline containing these mistaked:
    (0 tuples)
 
 Unfortunately, changing the table definition (the ``definition`` property) of the class after the table
-has been created in the data pipeline does **not** change the definition of the already existing table.
+has been created in the data pipeline does **not** change the definition of the already-existing table.
 
 The best way to deal with this error, especially this early in the design process, is to drop the table
-all together. You can do so as follows:
+alltogether. You can do so as follows:
 
 .. code-block:: python
   
@@ -278,7 +275,7 @@ either result in a reprompt or cancellation. Type in ``yes`` at the prompt to co
   Proceed? [yes, No]: yes
   Tables dropped. Restart kernel.
 
-Now the table is dropped, you can fix errors in your class ``definition`` and recreate the table!
+Now the table is dropped, you can fix errors in your class ``definition`` and recreate the table.
 
 .. note::
   As the prompt for the ``drop`` method suggestion, you might want to restart your Python kernel after dropping
@@ -287,4 +284,4 @@ Now the table is dropped, you can fix errors in your class ``definition`` and re
 What's next?
 ------------
 Congratulations again! You have successfully created your first table in your data pipeline. In the 
-:doc:`next section <inserting-data>`, we will giving the table some meat by inserting data into it!
+:doc:`next section <inserting-data>`, we will give the table some substance by inserting data into it!
