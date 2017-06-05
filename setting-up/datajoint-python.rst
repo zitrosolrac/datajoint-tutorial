@@ -1,7 +1,8 @@
 Installing DataJoint for Python
 ===============================
 
-Here we will cover installing DataJoint library for Python and configuring it to connect to a database server. If you don't have a database server configured yet, be sure to checkout :doc:`local_database`!
+Here we will cover installing DataJoint library for Python and configuring it to connect to a database server. 
+If you don't have a database server configured yet, be sure to checkout :doc:`get-database`!
 
 System requirements
 -------------------
@@ -45,25 +46,38 @@ Configuring DataJoint
 ---------------------
 
 Now you have DataJoint installed, let's configure the library to connect to the database server. 
-Here we are going to assume that you have a database server running locally on your machine as would be 
-the case if you followed the instructions from :doc:`local_database`. 
+Whichever option you have selected from :doc:`get-database`, you will need three information to connect
+to the database server: database address, username and password!
+
+.. note::
+  If you have signed up for tutorial database at `DataJoint.io <https://datajoint.io>`_ you should have received
+  an email with instructions on how to connect to the database, including the host address, username, and your
+  temporary password.
+
+.. note::
+  If you have followed the :doc:`local-database` tutorial to setup local database in Docker, your host address
+  will be ``127.0.0.1``, username ``root`` and password ``tutorial``.
+
+.. note::
+  If you have a non-local database server setup for your lab/institution that you would like to connect to,
+  simpley use the host address, username and password for the target database server. These information are typically 
+  provided by your database administrator.
+
+
 Start an interactive Python 3 console and type in the following commands:
 
 .. code-block:: python
 
   >>> import datajoint as dj
-  >>> dj.config['database.host'] = '127.0.0.1'
-  >>> dj.config['database.user'] = 'root'
-  >>> dj.config['database.password'] = 'tutorial'
+  >>> dj.config['database.host'] = 'HOST_ADDRESS'
+  >>> dj.config['database.user'] = 'USER_NAME'
+  >>> dj.config['database.password'] = 'PASSWORD'
 
 Here, we are using the ``dj.config`` object to update configurations for DataJoint. Namely, we are specifing 
 the address of the database (``database.host``), and the user name (``database.user``) and the password 
-(``database.password``). To connect to your local database, we set the database address to be ``'127.0.0.1'``.
-Here, we are using the username and password configured from the :doc:`last section <local_database>` (`'root'` and `'tutorial'`). 
+(``database.password``). Be sure to replace ``'HOST_ADDRESS'``, ``'USER_NAME'``, and ``'PASSWORD'`` with the actual
+values for your database connection! Note that these values have to be provided as strings 
 
-.. note::
-  If you would like to connect to a different database server from the one configured in :doc:`local_database`,
-  simpley use the host address, username and password for the target database server. These information are typically provided by your database administrator.
 
 Now we have updated the connection configuration, let's check the connection status by calling `dj.conn()`:
 
@@ -73,11 +87,15 @@ Now we have updated the connection configuration, let's check the connection sta
   Connecting root@localhost:3306
   DataJoint connection (connected) root@localhost:3306
 
-If you get a message that looks like above, then congratulations! You have just successfully accessed your (local) database server using DataJoint!
+If you get a message that looks like above, then congratulations! You have just successfully accessed the database server using DataJoint!
+
+.. note::
+  Your exact message will look different depending on what database server you are
+  connected to.
 
 What's next
 -----------
 
 If everything went well, you now have a fully functional developement environment for DataJoint with Python,
-with a database server running locally on your machine. You can now move onto :doc:`/beginner/first_pipeline`
+connected to a database server. You can now move onto :doc:`/beginner/first_pipeline`
 to start learning how to use DataJoint to design and build data pipelines, or explore any other tutorials in this site to learn specific features of DataJoint.

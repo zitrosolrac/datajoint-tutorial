@@ -1,7 +1,8 @@
 Installing DataJoint for MATLAB
 ===============================
 
-Here we will cover installing DataJoint library for MATLAB and configuring it to connect to a database server. If you don't have a database server configured yet, be sure to checkout :doc:`local_database`!
+Here we will cover installing DataJoint library for MATLAB and configuring it to connect to a database server.
+If you don't have a database server configured yet, be sure to checkout :doc:`get-database` first!
 
 System requirements
 -------------------
@@ -28,25 +29,39 @@ If that prints out DataJoint version without an error, you are good to go!
 Configuring DataJoint
 ---------------------
 
-Now you have DataJoint installed, let's configure the library to connect to the database server. Here we are going to assume that you have a database server running locally on your machine as would be the case if you followed the instructions from :doc:`local_database`. Start MATLAB and type in the following commands:
+Now you have DataJoint installed, let's configure the library to connect to the database server. 
+Whichever option you have selected from :doc:`get-database`, you will need three information to connect
+to the database server: database address, username and password!
+
+.. note::
+  If you have signed up for tutorial database at `DataJoint.io <https://datajoint.io>`_ you should have received
+  an email with instructions on how to connect to the database, including the host address, username, and your
+  temporary password.
+
+.. note::
+  If you have followed the :doc:`local-database` tutorial to setup local database in Docker, your host address
+  will be ``127.0.0.1``, username ``root`` and password ``tutorial``.
+
+.. note::
+  If you have a non-local database server setup for your lab/institution that you would like to connect to,
+  simpley use the host address, username and password for the target database server. These information are typically 
+  provided by your database administrator.
+
+Start MATLAB and type in the following commands:
 
 .. code-block:: matlab
 
-  >> setenv('DJ_HOST', '127.0.0.1')
-  >> setenv('DJ_USER', 'root')
-  >> setenv('DJ_PASS', 'tutorial')
+  >> setenv('DJ_HOST', 'HOST_ADDRESS')
+  >> setenv('DJ_USER', 'USER_NAME')
+  >> setenv('DJ_PASS', 'PASSWORD')
 
 Here, we are setting environmental variables with ``setenv`` to update configurations for DataJoint connection.
 Namely, we are specifing the address of the database (`DJ_HOST`), and the user name (`DJ_USER`) and the 
-password (`DJ_PASS`). To connect to your local database, we set the database address to `'127.0.0.1'`. 
-We are also using the username and password configured in the :doc:`last section <local_database>` (`'root'` and `'tutorial'`). 
+password (`DJ_PASS`). Be sure to replace ``'HOST_ADDRESS'``, ``'USER_NAME'``, and ``'PASSWORD'`` with the actual
+values for your database connection! Note that these values have to be provided as character array in quotes ``' '`` 
 
-.. note::
-  If you would like to connect to a different database server from the one configured in :doc:`local_database`, 
-  simpley use the host address, username and password for the target database server. These information are typically provided by your database administrator.
 
 Now we have updated the connection configuration, let's check the connection status by calling `dj.conn()`:
-
 
 .. code-block:: matlab
 
@@ -78,12 +93,16 @@ When you call it for the very first time after the installation, the above comma
         foreignKeys: [0×0 struct]
         isConnected: 1
 
-If you get a message that looks like above, then congratulations! You have just successfully accessed your (local) database server using DataJoint!
+If you get a message that looks like above, then congratulations! You have just successfully accessed the database server using DataJoint!
+
+.. note::
+  Your exact message will look different depending on what database server you are
+  connected to.
 
 What's next
 -----------
 
 If everything went well, you now have a fully functional developement environment for DataJoint with MATLAB,
-with a database server running locally on your machine. You can now move onto :doc:`/beginner/first_pipeline`
+with a database server. You can now move onto :doc:`/beginner/first_pipeline`
 to start learning how to use DataJoint to design and build data pipelines, or explore any other tutorials in this site to learn specific features of DataJoint.
 t
