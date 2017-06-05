@@ -36,7 +36,7 @@ Verify the new entry by checking the table's content again:
 Inserting a dictionary
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Alternatively you can first define a dictionary with attribute names as keys and fill the values.
+Alternatively you can first define a dictionary with attribute names as keys and fill in the values.
 
 .. code-block:: python
   
@@ -66,9 +66,9 @@ Resulting in a new entry:
 Inserting multiple entries at a time
 ------------------------------------
 
-You can insert multiple entries at a time by passing in a list of tuples/list or dictionaries into the
-talbe's ``insert`` method (that is, instead of ``insert1`` method). Let's prepare a few more mouse entries
-and insert at once.
+You can insert multiple entries at a time by passing in a list of tuples or list of dictionaries into the
+table's ``insert`` method (instead of the ``insert1`` method). Let's prepare a few more entries
+and insert them all together.
 
 .. code-block:: python
 
@@ -78,7 +78,7 @@ and insert at once.
     (5, '2016-12-25', 'F')
   ]
 
-  # now insert at once
+  # now insert all at once
   mouse.insert(data)
 
 Verify the insert:
@@ -127,13 +127,13 @@ This results in:
 
 Data integrity
 --------------
-One of the key features of DataJoint is data integirty - a series of checks and restrictions to make sure that
-our data remains consistent through its life in the data pipeline, and data integrity in DataJoint starts at data
-entry!
+One of the key features of DataJoint is data integrity - a series of checks and restrictions to make sure that
+our data remains consistent through its life in the data pipeline. 
 
-For example, **data duplication** is prevented by checking and rejecting entries with already existing primary
+Data integrity in DataJoint starts at data
+entry. What does this mean? Well **data duplication** is prevented by checking and rejecting entries with already existing primary
 key values. You can see this check in action by trying to insert a new entry with ``mouse_id`` that already exists
-in the table!
+in the table.
 
 .. code-block:: python
 
@@ -144,11 +144,11 @@ in the table!
   ...output truncated...
   IntegrityError: (1062, "Duplicate entry '0' for key 'PRIMARY'")
 
-As you can see, trying to make a duplicate entries results in an ``IntegrityError``. As you step through the tutorial,
-you will see more examples of how DataJoint ensures data integrity in the every step of the way but without
-requiring much effort from your side! (aside from fixing problems when pointed out by DataJoint)
+As you can see, trying to make a duplicate entry results in an ``IntegrityError``. As you step through the tutorial,
+you will see more examples of how DataJoint ensures data integrity at every step of the way (but without
+requiring much effort from your side).
 
 What's next?
 ------------
-Now you have successfully entered some data into your first table, the data pipeline has some data to work
-with! In the :doc:`next section <querying-data>` we will look at how to query and fetch data from your table!
+Now that you have successfully entered some data into your first table, the data pipeline has some data to work
+with. In the :doc:`next section <querying-data>` we will look at how to query and fetch data from your table!

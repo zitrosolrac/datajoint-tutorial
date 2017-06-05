@@ -1,15 +1,14 @@
 Querying and fetching data
 ==========================
 
-Now that we covered how to insert data into the table, you might be wondering "how do we retrieve the
-data from the table?" In this section, we will explore not only how to fetch the data, but how to 
-narrow down and only fetch the data you want! But first thing first, let's start with the simplest -
+Now that we covered how to insert data into the table, you might be wondering how to retreive it. In this section, we will explore not only how to fetch the data, but how to 
+narrow down and only fetch the data you want. But first let's start with the simplest case -
 let's fetch all the data in the table.
 
-Fetching all data
+Fetching all the data
 -----------------
 
-You can fetch all data inside a table by simply calling ``fetch`` method on the table object:
+You can fetch all the data stored in a table by simply calling the ``fetch`` method on the table object:
 
 .. code-block:: python
   
@@ -70,19 +69,18 @@ This can also be used to fetch multiple attributes separately:
   >>> dob
   array([  0,   1,   2,   5,  10,  11, 100])
 
-Now that you have learnt how to insert and then fetch data from a table, you could already start to use 
-tables at least as your simple storage of your data. However, true power of DataJoint comes about when you 
+Now that you have seen how to insert and then fetch data from a table, you could already start to use 
+tables to store simple data. However, the true power of DataJoint comes about when you 
 start combining these operations with DataJoint's simple yet very powerful **query** language.
 
 Querying Data
 -------------
 
 The process of **querying** data refers to the searching and narrowing down of the existing data to find
-exactly what you need. Rather than retrieving all data and then writing your own parser to just retrieve
-data you are interested, you can use DataJoint's query language to narrow down data first and then only
+exactly what you need. Rather than retrieving all data and then writing your own parsing function to extract the data you want, you can use DataJoint's query language to narrow things down first and then only
 retrieve what you need. Let's take a look, using our ``Mouse`` table as the example.
 
-At the moment, the ``Mouse`` table contains a couple entries:
+At the moment, the ``Mouse`` table contains several entries:
 
 .. code-block:: python
 
@@ -106,7 +104,7 @@ Restricting by attribute value
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Let's start with a very simple query, looking for an entry with a specific value of an attribute. We
-can find information about mouse with `mouse_id = 0` as follows:
+can find information about the mouse with `mouse_id = 0` as follows:
 
 .. code-block:: python
 
@@ -117,10 +115,10 @@ can find information about mouse with `mouse_id = 0` as follows:
    (1 tuples)
 
 Let's take a closer look at what just happened. Using the table instance ``mouse``, we used the ``&`` (restriction)
-operation to **restrict** down to entries that matches the **restriction** ``mouse_id = 0``. Sincere there is only
+operation to **restrict** down to entries that matches the **restriction** ``mouse_id = 0``. Since there is only
 one mouse with ``mouse_id = 0`` (recall that ``mouse_id`` is the primary key), we get back only one entry.
 
-Now, let's say we want to list only male mice. This is easily achieved with:
+Now, let's say we want to list only male mice. This is easily done by:
 
 .. code-block:: python
 
@@ -136,7 +134,7 @@ Notice that ``"M"`` was surrounded by double quotes (``"``) because the value wa
 Using inequality in restriction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We can also use inequality in our query, for eample to serach all mouse born after Jan 1, 2017:
+We can also use inequalities in our query, for eample to search for all mice born after Jan 1, 2017:
 
 .. code-block:: python
 
@@ -148,7 +146,7 @@ We can also use inequality in our query, for eample to serach all mouse born aft
   100          2017-05-12     F
    (3 tuples)
 
-Or you can find all mouse that are **not** male:
+Or you can find all mice that are **not** male:
 
 .. code-block:: python
   
@@ -165,7 +163,7 @@ Or you can find all mouse that are **not** male:
 Combining restrictions
 ^^^^^^^^^^^^^^^^^^^^^^
 
-You can also *combine* multiple restrictions to form more complex query:
+You can also *combine* multiple restrictions to form more complex queries:
 
 .. code-block:: python
 
@@ -177,10 +175,10 @@ You can also *combine* multiple restrictions to form more complex query:
 
 Restricting by a dictionary
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are only looking for equivalence of attribute values (i.e. only use ``=`` in restriction),
-you can also use dictionary in restriction.
+If you are only looking for an equivalence of attribute values (i.e. you only need to use ``=`` in the restriction),
+you can also use a dictionary to restrict.
 
-For example, the earlier query looking of
+For example, the earlier query:
 
 .. code-block:: python
 
@@ -191,7 +189,7 @@ For example, the earlier query looking of
   1            2016-11-19     M
    (2 tuples)
  
-can also be achieved using dictionary as follows:
+can also be achieved using a dictionary as follows:
 
 .. code-block:: python
 
@@ -205,10 +203,10 @@ can also be achieved using dictionary as follows:
   1            2016-11-19     M
    (2 tuples)
 
-Restricting with dictionary come in particulary handy when restricting by multiple attribute values.
+Restricting with a dictionary comes in handy when you want to restrict by multiple attribute values.
 
-Fetching query result
----------------------
+Fetching query results
+----------------------
 
 Once you are happy with your query, you can fetch only the matching entries by calling fetch on the query
 result:
@@ -220,12 +218,12 @@ result:
       dtype=[('mouse_id', '<i8'), ('dob', 'O'), ('gender', 'O')]) 
 
 Not only does querying with DataJoint makes retrieving certain subsets of data easier, it also helps you
-but avoiding unnecessary data transfer between the database server and your computer. While you are
+avoid unnecessary data transfers between the database server and your computer. While you are
 forming and previewing queries, the query processing is actually performed by the database server, 
 and only minimal data (if any) is transferred between the database server and your computer.
 
 When you call ``fetch`` on the query result, only the relevant data is transfered, thus potentially cutting down
-the amount of data that has to be transferred out of database server to your local machine. Not only does
+the amount of data that has to be transferred out of the database server to your local machine. Not only does
 it save space on your machine, but can also significantly reduce data transfer speed and also help to reduce
 load on the database server.
 
@@ -233,8 +231,8 @@ What's next?
 ------------
 In this section, we learned how to fetch data from the table using the ``fetch`` method. We also met our
 first query operation, ``&`` (restriction) and learned how it can be used to narrow down your query
-results. As you progress through the tutorials and create more tables, you will learn additiona query
-operations and how to combine them into more powerful yet intuitive query.
+results. As you progress through the tutorials and create more tables, you will learn additional 
+operations and how to combine them into more powerful yet intuitive queries.
 
-In the :doc:`next section <child-table>`, we will move forward in our data pipeline creation by creating and **linking** addition
+In the :doc:`next section <child-table>`, we will move forward in our data pipeline creation by creating and **linking** additional
 tables together.
