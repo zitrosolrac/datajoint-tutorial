@@ -33,7 +33,7 @@ Set up your connection to the database server.
 
 
 .. note::
-  If you need a review on how to connect to the database from DataJoint, checkout :doc:`/setting-up/datajoint-python`
+  If you need a review on how to connect to the database from DataJoint, checkout :ref:`configure-python-dj`.
 
 
 Let's create our first schema called `tutorial`!
