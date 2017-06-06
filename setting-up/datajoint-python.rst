@@ -42,6 +42,8 @@ Verify that the package was properly installed by starting a Python 3 console, a
 
 Make sure you have DataJoint package installed successfully before moving on.
 
+.. _configure-python-dj:
+
 Configuring DataJoint
 ---------------------
 

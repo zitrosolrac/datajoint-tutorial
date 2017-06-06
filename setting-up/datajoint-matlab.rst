@@ -26,6 +26,8 @@ And that's it! To verify that the toolbox was properly installed, run the follow
 
 If that prints out DataJoint version without an error, you are good to go!
 
+.. _configure-matlab-dj:
+
 Configuring DataJoint
 ---------------------
 

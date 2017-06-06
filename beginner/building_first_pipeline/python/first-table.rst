@@ -31,7 +31,7 @@ Set up your connection to the database server.
 
 
 .. note::
-  If you need a review on how to connect to the database from DataJoint, checkout :doc:`/setting-up/datajoint-python`
+  If you need a review on how to connect to the database from DataJoint, checkout :ref:`configure-python-dj`.
 
 
 Let's create our first schema called `tutorial`!
@@ -188,16 +188,15 @@ tells DataJoint to create the table specified by the class (``Mouse``) inside th
 Creating the table in the data pipeline
 ---------------------------------------
 
-Now we have gone through the table class definition in some detail, let's actually create the table in the
-database server, thus defining the first node in our data pipeline. All we have to do is create an instance
-of the table class:
+What you might have not realized is that, when you defined the class above, you have actually created the
+corresponding table in the database server! To access the table and manipulate this table, you create an
+instance of the table class:
 
 .. code-block:: python
 
   mouse = Mouse()
 
-Congratulations! You have just created your first table in your data pipeline. To verify that something actually
-happened, enter the table object by itself:
+You can now use this instance (``mouse``) to look into the table in the databasee:
 
 .. code-block:: python
 
@@ -283,5 +282,5 @@ Now the table is dropped, you can fix errors in your class ``definition`` and re
 
 What's next?
 ------------
-Congratulations again! You have successfully created your first table in your data pipeline. In the 
-:doc:`next section <inserting-data>`, we will give the table some substance by inserting data into it!
+Congratulations again! You have successfully created your first table in your data pipeline. 
+In the :doc:`next section <inserting-data>`, we will give the table some substance by inserting data into it!

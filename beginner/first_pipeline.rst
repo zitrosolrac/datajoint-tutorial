@@ -14,8 +14,6 @@ to collect and process the data from your experiments. If you are not a neurosci
   already configured a database server where you can create new database schemas and tables. If you don't
   have either of this, be sure to checkout :doc:`/setting-up/introduction` before moving on!
 
-
-
 What's covered in this tutorial?
 --------------------------------
 In this tutorial, we will walk through the process of designing, creating, and populating data pipelines
@@ -25,9 +23,6 @@ step-by-step. In particular, we will cover the following conecepts:
 - Different table types or *tiers*
 - How to insert data into a table manually
 - How to query and fetch data from the tables
-- How to import data from files into a table automatically
-- How to define computed tables whose entries are computed from other tables
-- General tips on designing functional and extensible data pipelines.
 
 Designing data pipelines for your experiments
 ----------------------------------------------
@@ -70,8 +65,10 @@ Ready to start building your data pipeline in Python? Proceed to :doc:`building_
 
    building_first_pipeline/python/first-table
    building_first_pipeline/python/inserting-data
+   building_first_pipeline/python/save-tables
    building_first_pipeline/python/querying-data
    building_first_pipeline/python/child-table
+   building_first_pipeline/python/more-queries
 
 
 Building in MATLAB

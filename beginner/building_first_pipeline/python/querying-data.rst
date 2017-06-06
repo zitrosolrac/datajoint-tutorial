@@ -6,7 +6,7 @@ narrow down and only fetch the data you want. But first let's start with the sim
 let's fetch all the data in the table.
 
 Fetching all the data
------------------
+---------------------
 
 You can fetch all the data stored in a table by simply calling the ``fetch`` method on the table object:
 
