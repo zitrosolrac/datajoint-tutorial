@@ -84,6 +84,10 @@ and run the following:
 
 .. code-block:: python
 
+  >>> import datajoint as dj
+  >>> dj.config['database.host'] = ...      # specify your database address
+  >>> dj.config['database.user'] = ...      # specify your username
+  >>> dj.config['database.password'] = ...  # specify your password
   >>> from tutorial_tables import *
 
 This will make the content of your Python file available for use in the interactive session. As you define more tables,

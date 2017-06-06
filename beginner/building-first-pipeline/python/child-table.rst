@@ -148,22 +148,8 @@ Furthermore, DataJoint uses dependencies to ensure that no dependent entires can
 
 Deleting dependent entries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-This is now a good time to introduce a new table method ``delete``. As you might imagine,
-this can be used to delete entries in a table. Just like ``fetch``, you can delete all entries
-in a table by simply calling the method on a table:
-
-.. code-block:: python
-  
-  >>> mouse.delete()   # this will try to delete ALL entries
-
-More usefully, you can narrow down your query by restriction and only delete the selected entries:
-
-.. code-block:: python
-
-  >>> (mouse & 'mouse_id = 0').delete()   # only attempt to delete mouse with id=0
-
-Now that you know how to delete entries from a table, let's see what happens if we try to delete
-entries in the ``Mouse`` table that have dependent entries in ``Session``.
+Remember the ``delete`` method back from :ref:`python-delete-entries`? Let's see what happens 
+if we try to delete entries in the ``Mouse`` table that have dependent entries in ``Session``.
 
 Recall that ``Session`` table has an entry that points to mouse with ``mouse_id=0``:
 

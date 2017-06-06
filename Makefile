@@ -24,6 +24,5 @@ site:
 	make clean
 	make html
 	cp -r $(BUILDDIR)/html site
-	touch site/.nojekyll
 	@echo "Build finished. The HTML pages are in site/html."
 

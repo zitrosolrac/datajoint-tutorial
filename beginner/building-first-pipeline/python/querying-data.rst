@@ -227,11 +227,41 @@ the amount of data that has to be transferred out of the database server to your
 it save space on your machine, but can also significantly reduce data transfer speed and also help to reduce
 load on the database server.
 
+.. _python-delete-entries:
+
+Deleting entires
+----------------
+
+Now that we have learned how to restrict our selection from a table, it's
+an appropriate time for us to learn how to **delete** entries. As you might have guessed,
+you can delete entries by calling the ``delete`` method:
+
+.. code-block:: python
+
+  >>> mouse.delete()      # this will attept to delete ALL entries
+  The contents of the following tables are about to be deleted:
+  `dj_tutorial`.`mouse` (7 tuples)
+  Proceed? [yes, No]: no
+
+Either hit enter without typing anything or type in "no" to cancel the deletion. If you can only
+delete all entries, then this would not be too useful. Fortunately, you can delete restricted
+table. For example, if I want to specifically delete mouse with ID of 0:
+
+.. code-block:: python
+ 
+  >>> (mouse & 'mouse_id = 0').delete()
+  The contents of the following tables are about to be deleted:
+  dj_tutorial`.`mouse` (1 tuples)
+  Proceed? [yes, No]: no
+
+
 What's next?
 ------------
 In this section, we learned how to fetch data from the table using the ``fetch`` method. We also met our
 first query operation, ``&`` (restriction) and learned how it can be used to narrow down your query
-results. As you progress through the tutorials and create more tables, you will learn additional 
+results and fetch them. Finally we learned how to delete table entries using ``delete`` method, and
+also learned how to delete only specific entires by using restriction on the table.
+As you progress through the tutorials and create more tables, you will learn additional 
 operations and how to combine them into more powerful yet intuitive queries.
 
 In the :doc:`next section <child-table>`, we will move forward in our data pipeline creation by creating and **linking** additional
