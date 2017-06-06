@@ -210,4 +210,3 @@ We are progressing well in our data pipeline creation adventure. We have success
 new table that **depends** on our previous table, thereby starting to form connections or "pipes"
 in our data pipeline. With two linked tables, we can now perform even more exciting queries as 
 we will cover in the :doc:`next section <more-queries>`.
-
