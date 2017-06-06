@@ -2,6 +2,7 @@ Building Your First Pipeline
 ============================
 
 **Author**: Edgar Y. Walker
+
 **Updated**: 2017-06-03
 
 There is no better way to learn about a tool than to sit down and get your hands dirty using it! In this tutorial, we will learn
@@ -50,7 +51,7 @@ that can include all of the above information. Now choose your language and move
 Building in Python
 ------------------
 
-Ready to start building your data pipeline in Python? Proceed to :doc:`building_first_pipeline/python/first-table` now!
+Ready to start building your data pipeline in Python? Proceed to :doc:`python/first-table` now!
 
 .. note::
   To complete this, you must have a properly configured database server and a computer with Python 3.4 or above
@@ -63,18 +64,18 @@ Ready to start building your data pipeline in Python? Proceed to :doc:`building_
    :includehidden:
    :caption: Getting Started
 
-   building_first_pipeline/python/first-table
-   building_first_pipeline/python/inserting-data
-   building_first_pipeline/python/save-tables
-   building_first_pipeline/python/querying-data
-   building_first_pipeline/python/child-table
-   building_first_pipeline/python/more-queries
+   python/first-table
+   python/inserting-data
+   python/save-tables
+   python/querying-data
+   python/child-table
+   python/more-queries
 
 
 Building in MATLAB
 ------------------
 
-Ready to start building your data pipeline in MATLAB? Proceed to :doc:`building_first_pipeline/matlab/first-table` now!
+Ready to start building your data pipeline in MATLAB? Proceed to :doc:`matlab/first-table` now!
 
 .. note::
   To complete this, you must have a properly configured database server and a computer with MATLAB 2015b or newer
@@ -87,5 +88,5 @@ Ready to start building your data pipeline in MATLAB? Proceed to :doc:`building_
    :includehidden:
    :caption: Getting Started
 
-   building_first_pipeline/matlab/first-table
+   matlab/first-table
 

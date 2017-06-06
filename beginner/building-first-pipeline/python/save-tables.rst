@@ -83,6 +83,7 @@ Once completed, start a new Python console session **in the directory that conta
 and run the following:
 
 .. code-block:: python
+
   >>> from tutorial_tables import *
 
 This will make the content of your Python file available for use in the interactive session. As you define more tables,

@@ -12,7 +12,7 @@ define a table called ``Session`` that will keep track of data related to all mo
 
 When designing a new table, it is always a good idea to start by identify by what set of attributes 
 can be used to uniquely identify an entry in the table - thus identifying the primary key.
-From the descriptions given back in :doc:`/beginner/first_pipeline`, 1) an experiment session involves
+From the descriptions given back in :doc:`../index`, 1) an experiment session involves
 one mouse, 2) you can record from the same mouse on different days and 3) you could perform experiments on multiple mice per day. Putting this all together, we see that each experiment
 can be uniquely identified by knowing 1) on which mouse it was performed on **and** 2) on which
 day the experiment was performed on.
