@@ -21,14 +21,14 @@ of the attributes in the table:
   mouse.insert1( (0, '2017-03-01', 'M') )
 
 Here we used the table's ``insert1`` method to insert a new mouse with ``mouse_id`` of ``1``, ``dob``
-(date of birth) of ``2017-03-01`` and ``gender`` ``M`` (male).
+(date of birth) of ``2017-03-01`` and ``sex`` ``M`` (male).
 
 Verify the new entry by checking the table's content again:
 
 .. code-block:: python
 
   >>> mouse
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
    (1 tuples)
@@ -43,7 +43,7 @@ Alternatively you can first define a dictionary with attribute names as keys and
   data = {
     'mouse_id': 100,
     'dob': '2017-05-12',
-    'gender': 'F'
+    'sex': 'F'
   }
 
 and then insert this dictionary into the table:
@@ -57,7 +57,7 @@ Resulting in a new entry:
 .. code-block:: python
 
   >>> mouse
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   100          2017-05-12     F
@@ -86,7 +86,7 @@ Verify the insert:
 .. code-block:: python
 
   >>> mouse
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M
@@ -100,8 +100,8 @@ You can also do the same with a list of dictionaries:
 .. code-block:: python
 
   data = [
-    {'mouse_id': 10, 'dob': '2017-01-01', 'gender': 'F'},
-    {'mouse_id': 11, 'dob': '2017-01-03', 'gender': 'F'},
+    {'mouse_id': 10, 'dob': '2017-01-01', 'sex': 'F'},
+    {'mouse_id': 11, 'dob': '2017-01-03', 'sex': 'F'},
   ]
   
   # insert them all
@@ -112,7 +112,7 @@ This results in:
 .. code-block:: python
 
   >>> mouse
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M

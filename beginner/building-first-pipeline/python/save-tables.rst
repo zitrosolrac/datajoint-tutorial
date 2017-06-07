@@ -20,7 +20,7 @@ you define a class to define and access a table in the database. Let's take a lo
         mouse_id: int                  # unique mouse id
         ---
         dob: date                      # mouse date of birth
-        gender: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
+        sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
         """
 
 When you defined the class for the first time ever, DataJoint created a table with the corresponding name ``mouse``
@@ -76,7 +76,7 @@ like the following:
         mouse_id: int                  # unique mouse id
         ---
         dob: date                      # mouse date of birth
-        gender: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
+        sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
         """
 
 Once completed, start a new Python console session **in the directory that contains the ``tutorial_tables.py``** file,

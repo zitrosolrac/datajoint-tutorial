@@ -6,7 +6,7 @@ Setting up for DataJoint
 
 In this tutorial, we will cover how to setup a DataJoint Python or MATLAB development environment suitable
 for following the other tutorials and to explore DataJoint in general. A functional DataJoint development 
-setup consists of tow parts - a database server for hosting data pipelines and a Python or MATLAB environment
+setup consists of two parts - a database server for hosting data pipelines and a Python or MATLAB environment
 with DataJoint library installed. Natually, our objectives for this tutorial is as follows:
 
 - Explore options on :doc:`how to get connected to a database server <get-database>`
@@ -19,7 +19,7 @@ System requirements
 
 What's next?
 ============
-Ready to move on? Let's get started by setting up a local database server fist!
+Ready to move on? Let's get started by setting up a local database server first!
 
 .. raw:: html
 

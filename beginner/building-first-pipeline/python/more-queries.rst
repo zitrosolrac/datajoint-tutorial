@@ -13,8 +13,8 @@ you can find all male mice with:
 
 .. code-block:: python
 
-  >>> mouse & 'gender = "M"'
-  *mouse_id    dob            gender
+  >>> mouse & 'sex = "M"'
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M
@@ -45,7 +45,7 @@ restricting a table with another table:
 .. code-block:: python
   
   >>> mouse & session
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   5            2016-12-25     F
@@ -67,9 +67,9 @@ Let's take a look at a few examples:
 
 .. code-block:: python
 
-  >>> male_mice = mouse & 'gender = "M"'  # get all male mice
+  >>> male_mice = mouse & 'sex = "M"'  # get all male mice
   >>> male_mice
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M
@@ -86,7 +86,7 @@ or you could have combine this into one statement as in:
 
 .. code-block:: python
 
-  >>> session & (mouse & 'gender = "M"')
+  >>> session & (mouse & 'sex = "M"')
   *mouse_id    *session_date  experiment_set experimenter
   +----------+ +------------+ +------------+ +------------+
   0            2017-05-15     0              Edgar Walker
@@ -94,7 +94,7 @@ or you could have combine this into one statement as in:
    (2 tuples)
 
 As you get used to the DataJoint queries, you will quickly learn to read above queries as 
-"all sessions for mouse with gender male"!
+"all sessions for mouse with sex male"!
 
 **Q.** Give me all mice that have had an experimental session done on or after 2017-05-19
 
@@ -112,7 +112,7 @@ find all mice corresponding to those sessions!
    (2 tuples)
 
   >>> mouse & target_sessions
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   100          2017-05-12     F
@@ -123,7 +123,7 @@ Again you could have combined this into a single statement:
 .. code-block:: python
   
   >>> mouse & (session & 'session_date >= "2017-05-19"')
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   100          2017-05-12     F
@@ -139,9 +139,9 @@ you can first look for all female mice and then restric by all sessions performe
 
 .. code-block:: python
 
-  >>> female_mice = mouse & 'gender = "F"'    # get all female mice
+  >>> female_mice = mouse & 'sex = "F"'    # get all female mice
   >>> female_mice
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   5            2016-12-25     F
   10           2017-01-01     F
@@ -159,7 +159,7 @@ you can first look for all female mice and then restric by all sessions performe
    (3 tuples)
 
   >>> female_mice & target_sessions
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   5            2016-12-25     F
    (1 tuples)
@@ -168,8 +168,8 @@ Once again you could express the query in a single line without losing much read
 
 .. code-block:: python
 
-  >>> mouse & 'gender = "F"' & (session & 'session_date < "2017-05-20"')
-  *mouse_id    dob            gender
+  >>> mouse & 'sex = "F"' & (session & 'session_date < "2017-05-20"')
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   5            2016-12-25     F
    (1 tuples)
@@ -191,7 +191,7 @@ a corresponding entry in another table! Let's see how we can use this to find "a
 .. code-block:: python
   
   >>> mouse - session
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   1            2016-11-19     M
   2            2016-11-20     U
@@ -205,8 +205,8 @@ just like we did.
 
 .. note::
   Unlike restriction ``&``, the difference operator ``-`` only works on tables. If you want to negate the
-  condition when restricting by a string (e.g. ``gender = "M"``), simply the negate the statement itself
-  (e.g. ``gender != "M"``).
+  condition when restricting by a string (e.g. ``sex = "M"``), simply the negate the statement itself
+  (e.g. ``sex != "M"``).
 
 We will wrap up this section by covering one more of the basic but very powerful query operator - join ``*``.
 
@@ -220,7 +220,7 @@ you one table that has all columns from both tables. Let's take a look at an exa
 .. code-block:: python
 
   >>> mouse * session   # join mouse and session
-  *mouse_id    *session_date  dob            gender     experiment_set experimenter
+  *mouse_id    *session_date  dob            sex     experiment_set experimenter
   +----------+ +------------+ +------------+ +--------+ +------------+ +------------+
   0            2017-05-15     2017-03-01     M          0              Edgar Walker
   0            2017-05-19     2017-03-01     M          0              Edgar Walker
@@ -235,7 +235,7 @@ giving you all the information you want! You might have noticed that this does *
 .. code-block:: python
 
   >>> mouse
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M
@@ -255,13 +255,13 @@ for male mice with experiment session performed on or after 2017-05-19:
 
 .. code-block:: python
 
-  >>> mouse * session & 'gender = "M"' & 'session_date >= "2017-05-19"'
-  *mouse_id    *session_date  dob            gender     experiment_set experimenter
+  >>> mouse * session & 'sex = "M"' & 'session_date >= "2017-05-19"'
+  *mouse_id    *session_date  dob            sex     experiment_set experimenter
   +----------+ +------------+ +------------+ +--------+ +------------+ +------------+
   0            2017-05-19     2017-03-01     M          0              Edgar Walker
    (1 tuples)
 
-Notice how we were able to use attributes from both ``Mouse`` (``gender``) and ``Session`` (``session_date``)
+Notice how we were able to use attributes from both ``Mouse`` (``sex``) and ``Session`` (``session_date``)
 together.
 
 What's Next?
