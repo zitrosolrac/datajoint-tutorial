@@ -78,7 +78,7 @@ learned in:doc:`populating-data`. Remember that we can only perform experiments 
 .. code-block:: python
 
   >>> mouse
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M

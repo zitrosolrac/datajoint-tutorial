@@ -11,8 +11,8 @@ tables into one **schema** you can keep your data pipeline well structured.
   first before proceeding with this tutorial!
 
 
-Creating schema
----------------
+Creating a schema
+-----------------
 
 Let's get started by importing DataJoint and creating a new schema to define tables in. Open up an interactive
 Python console and import ``datajoint``:
@@ -57,8 +57,8 @@ And that's it! We have just created a schema in the database, and now we can now
   name space (e.g. interative session). This allows tables to refer to each other simply by their name. 
 
 
-Defining table class
---------------------
+Defining the Mouse table class
+------------------------------
 
 Now we will use the ``schema`` object to create a new table. In our hypothetical example, everything starts with a particular mouse. So let's create a table to enter and track all the mice we will work with:
 
@@ -70,7 +70,7 @@ Now we will use the ``schema`` object to create a new table. In our hypothetical
         mouse_id: int                  # unique mouse id
         ---
         dob: date                      # mouse date of birth
-        gender: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
+        sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
         """
 
 and it turns out that this is enough to define a table! There is actually a lot going on here, so let's walk through
@@ -97,7 +97,7 @@ DataJoint data definition language. Let's take a closer look a the definition st
    mouse_id: int                  # unique mouse id
    ---
    dob: date                      # mouse date of birth
-   gender: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
+   sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
    """
 
 Table comment
@@ -118,7 +118,7 @@ Attribute (column) definition
    mouse_id: int                  # unique mouse id
    ---
    dob: date                      # mouse date of birth
-   gender: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
+   sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
    """
 
 In the definition string, you define the table's attributes (or columns) one at a time, each in
@@ -138,7 +138,7 @@ a safe choice for holding the numerical ID for the mouse.
 .. note::
   In the table definition above, we have used ``date`` data type to hold dates in the form ``YYYY-MM-DD`` (e.g. 2017-01-31)
   and ``enum`` data type to have predefined values the attribute can chose from. ``enum('M', 'F', 'U')`` states that
-  ``gender`` attribute can take on the value of either ``'M'``, ``'F'``, or ``'U'``.
+  ``sex`` attribute can take on the value of either ``'M'``, ``'F'``, or ``'U'``.
 
 At the end of the definition, you can give a comment describing what this attribute stores. Although this is optional, it is strongly recommended that
 you add a brief comment to help remind everyone (including yourself!) what that field is about. A good combination
@@ -155,7 +155,7 @@ Primary vs non-primary key attributes
    mouse_id: int                  # unique mouse id
    ---
    dob: date                      # mouse date of birth
-   gender: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
+   sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
    """
 
 The ``---`` separator separates two types of attributes in the table. Above the line are your **primary-key
@@ -168,8 +168,8 @@ Below the ``---`` separator are **non-primary-key attributes**. As you would gue
 that are **not** used to identify the mouse. Typically, these attributes hold values that describe the entry
 (in this case a mouse) identified by the primary-key (``mouse_id``).
 
-Defining table in a schema
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Defining a table in a schema
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Going back to the class ``Mouse`` definition, 
 
@@ -182,12 +182,12 @@ Going back to the class ``Mouse`` definition,
         mouse_id: int                  # unique mouse id
         ---
         dob: date                      # mouse date of birth
-        gender: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
+        sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
         """
 
 Notice that we **decorate** the class ``Mouse`` with the ``schema`` object we created earlier. This decoration
 tells DataJoint to create the table specified by the class (``Mouse``) inside the schema pointed to by the
-``schema`` object (``dj_tutorial``).
+``schema`` object (``tutorial``).
 
 
 Creating the table in the data pipeline
@@ -206,7 +206,7 @@ You can now use this instance (``mouse``) to look into the table in the database
 .. code-block:: python
 
   >>> mouse
-  *mouse_id    dob     gender
+  *mouse_id    dob     sex
   +----------+ +-----+ +--------+
 
  (0 tuples)
@@ -216,7 +216,7 @@ the pipeline.
 
 .. note::
   If this is not the fist time going through this section of the tutorial, chances are you already have
-  the table ``Mouse`` defined in the schema ``dj_tutorial``. This is completely fine! If you define the
+  the table ``Mouse`` defined in the schema ``tutorial``. This is completely fine! If you define the
   class ``Mouse`` and instantiate it, the ``mouse`` instance will point to the same table you defined
   the first time you went through this tutorial.
 
@@ -237,10 +237,10 @@ For example, you might have made a spelling error in your definition:
         mose_id: int                   # unique mouse id
         ---
         dob: date                      # mouse date of birth
-        gend: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
+        sx: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
         """
 
-Notice that both ``mouse_id`` and ``gender`` attributes are spelled incorrectly! If you don't notice the
+Notice that both ``mouse_id`` and ``sex`` attributes are spelled incorrectly! If you don't notice the
 error before you instantiated your table class:
 
 .. code-block:: python
@@ -252,7 +252,7 @@ Then your table will be defined in the data pipeline containing these mistakes:
 .. code-block:: python
 
   >>> mouse    # view the table
-  *mose_id    dob     gend
+  *mose_id    dob     sx
   +---------+ +-----+ +------+
 
    (0 tuples)
@@ -266,7 +266,7 @@ alltogether. You can do so as follows:
 .. code-block:: python
   
   >>> mouse.drop()
-  `dj_tutorial`.`mouse` (0 tuples)
+  `tutorial`.`mouse` (0 tuples)
   Proceed? [yes, No]: 
 
 Notice that the ``drop`` method prompts you to confirm the deletion, typing anything other than ``yes`` will
@@ -275,7 +275,7 @@ either result in a reprompt or cancellation. Type in ``yes`` at the prompt to co
 .. code-block:: python
   
   >>> mouse.drop()
-  `dj_tutorial`.`mouse` (0 tuples)
+  `tutorial`.`mouse` (0 tuples)
   Proceed? [yes, No]: yes
   Tables dropped. Restart kernel.
 

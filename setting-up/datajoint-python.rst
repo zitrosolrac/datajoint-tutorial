@@ -1,13 +1,13 @@
 Installing DataJoint for Python
 ===============================
 
-Here we will cover installing DataJoint library for Python and configuring it to connect to a database server. 
+Here we will cover installing the DataJoint library for Python and configuring it to connect to a database server. 
 If you don't have a database server configured yet, be sure to checkout :doc:`get-database`!
 
 System requirements
 -------------------
 DataJoint for Python requires **Python 3.4 or above** to function properly. To check whether you have the 
-right Python version, run the following in terminal/command prompt:
+right Python version, run the following in the terminal/command prompt:
 
 .. code-block:: bash
 
@@ -16,7 +16,7 @@ right Python version, run the following in terminal/command prompt:
 If the above command runs without an error and the version is at least `3.4` (e.g.`3.6.0`),
 then you are good to go!
 
-Installing DataJoint Package
+Installing the DataJoint Package
 ----------------------------
 
 The entire source code for DataJoint Python is made available at `datajoint/datajoint-python <https://github.com/datajoint/datajoint-python>`_ 
@@ -31,7 +31,7 @@ by just running the following in the terminal:
 
 
 and that's it! This should trigger the installation of the latest DataJoint and all of its dependencies. 
-Depending on how your Python environment is configured, you may have to add `sudo` to the above command.
+Depending on how your Python environment is configured, you may have to prefix `sudo` to the above command.
 
 Verify that the package was properly installed by starting a Python 3 console, and try importing the 
 `datajoint` package:
@@ -40,7 +40,7 @@ Verify that the package was properly installed by starting a Python 3 console, a
 
   >>> import datajoint as dj
 
-Make sure you have DataJoint package installed successfully before moving on.
+Make sure you have the DataJoint package installed successfully before moving on.
 
 .. _configure-python-dj:
 
@@ -48,21 +48,21 @@ Configuring DataJoint
 ---------------------
 
 Now you have DataJoint installed, let's configure the library to connect to the database server. 
-Whichever option you have selected from :doc:`get-database`, you will need three information to connect
-to the database server: database address, username and password!
+Whichever option you have selected from :doc:`get-database`, you will need three pieces of information to connect
+to the database server: the database address, and your username and password.
 
 .. note::
-  If you have signed up for tutorial database at `DataJoint.io <https://datajoint.io>`_ you should have received
+  If you have signed up for the tutorial database at `DataJoint.io <https://datajoint.io>`_ you should have received
   an email with instructions on how to connect to the database, including the host address, username, and your
   temporary password.
 
 .. note::
-  If you have followed the :doc:`local-database` tutorial to setup local database in Docker, your host address
+  If you have followed the :doc:`local-database` tutorial to setup a local database in Docker, your host address
   will be ``127.0.0.1``, username ``root`` and password ``tutorial``.
 
 .. note::
   If you have a non-local database server setup for your lab/institution that you would like to connect to,
-  simpley use the host address, username and password for the target database server. These information are typically 
+  simply use the host address, username and password for the target database server. These information are typically 
   provided by your database administrator.
 
 
@@ -76,12 +76,12 @@ Start an interactive Python 3 console and type in the following commands:
   >>> dj.config['database.password'] = 'PASSWORD'
 
 Here, we are using the ``dj.config`` object to update configurations for DataJoint. Namely, we are specifing 
-the address of the database (``database.host``), and the user name (``database.user``) and the password 
+the address of the database (``database.host``), and the user name (``database.user``) and password 
 (``database.password``). Be sure to replace ``'HOST_ADDRESS'``, ``'USER_NAME'``, and ``'PASSWORD'`` with the actual
-values for your database connection! Note that these values have to be provided as strings 
+values for your database connection! Note that these values have to be provided as strings.
 
 
-Now we have updated the connection configuration, let's check the connection status by calling `dj.conn()`:
+Now that we have updated the connection configuration, let's check the connection status by calling `dj.conn()`:
 
 .. code-block:: python
 
@@ -89,10 +89,10 @@ Now we have updated the connection configuration, let's check the connection sta
   Connecting root@localhost:3306
   DataJoint connection (connected) root@localhost:3306
 
-If you get a message that looks like above, then congratulations! You have just successfully accessed the database server using DataJoint!
+If you get a message that looks like this, then congratulations! You have just successfully accessed the database server using DataJoint!
 
 .. note::
-  Your exact message will look different depending on what database server you are
+  The exact message will look different depending on what database server you are
   connected to.
 
 What's next
