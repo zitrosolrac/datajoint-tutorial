@@ -12,7 +12,7 @@ define a table called ``Session`` that will keep track of data related to all mo
 
 When designing a new table, it is always a good idea to start by identify by what set of attributes 
 can be used to uniquely identify an entry in the table - thus identifying the primary key.
-From the descriptions given back in :doc:`/beginner/first_pipeline`, 1) an experiment session involves
+From the descriptions given back in :doc:`../index`, 1) an experiment session involves
 one mouse, 2) you can record from the same mouse on different days and 3) you could perform experiments on multiple mice per day. Putting this all together, we see that each experiment
 can be uniquely identified by knowing 1) on which mouse it was performed on **and** 2) on which
 day the experiment was performed on.
@@ -148,22 +148,8 @@ Furthermore, DataJoint uses dependencies to ensure that no dependent entires can
 
 Deleting dependent entries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-This is now a good time to introduce a new table method ``delete``. As you might imagine,
-this can be used to delete entries in a table. Just like ``fetch``, you can delete all entries
-in a table by simply calling the method on a table:
-
-.. code-block:: python
-  
-  >>> mouse.delete()   # this will try to delete ALL entries
-
-More usefully, you can narrow down your query by restriction and only delete the selected entries:
-
-.. code-block:: python
-
-  >>> (mouse & 'mouse_id = 0').delete()   # only attempt to delete mouse with id=0
-
-Now that you know how to delete entries from a table, let's see what happens if we try to delete
-entries in the ``Mouse`` table that have dependent entries in ``Session``.
+Remember the ``delete`` method back from :ref:`python-delete-entries`? Let's see what happens 
+if we try to delete entries in the ``Mouse`` table that have dependent entries in ``Session``.
 
 Recall that ``Session`` table has an entry that points to mouse with ``mouse_id=0``:
 

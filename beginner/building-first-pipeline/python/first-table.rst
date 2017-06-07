@@ -135,6 +135,11 @@ For `mouse_id`, we have chosen type ``int`` which can hold integers between -214
 the exact range depending on your database server. Since we don't expect to have that many mice, ``int`` is
 a safe choice for holding the numerical ID for the mouse. 
 
+.. note::
+  In the table definition above, we have used ``date`` data type to hold dates in the form ``YYYY-MM-DD`` (e.g. 2017-01-31)
+  and ``enum`` data type to have predefined values the attribute can chose from. ``enum('M', 'F', 'U')`` states that
+  ``gender`` attribute can take on the value of either ``'M'``, ``'F'``, or ``'U'``.
+
 At the end of the definition, you can give a comment describing what this attribute stores. Although this is optional, it is strongly recommended that
 you add a brief comment to help remind everyone (including yourself!) what that field is about. A good combination
 of a well thought-out attribute name and a good comment can help make your table very readable.

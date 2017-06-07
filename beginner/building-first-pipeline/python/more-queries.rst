@@ -268,6 +268,6 @@ What's Next?
 ------------
 Phew! That was a lot of material but hopefully you saw how you can form powerful queries using DataJoint's
 intuitive query language! Go ahead and spend some more time playing with the queries and see if you can come
-up with queries to answer any question you can ask about your data! In the :doc:`next section <imported-table>`
+up with queries to answer any question you can ask about your data! In the :doc:`next section <importing-data>`
 we will look into building a table that can load external data automatically!
 

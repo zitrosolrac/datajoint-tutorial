@@ -105,6 +105,6 @@ What's next
 -----------
 
 If everything went well, you now have a fully functional developement environment for DataJoint with MATLAB,
-with a database server. You can now move onto :doc:`/beginner/first_pipeline`
+with a database server. You can now move onto :doc:`/beginner/building-first-pipeline/index`
 to start learning how to use DataJoint to design and build data pipelines, or explore any other tutorials in this site to learn specific features of DataJoint.
 t

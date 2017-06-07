@@ -7,7 +7,7 @@ of the world DataJoint!
 If you have never used DataJoint before, start by visiting :doc:`/setting-up/introduction`
 to setup a DataJoint development environment suitable for following all tutorials!
 
-Once you have a working environment, step through :doc:`/beginner/first_pipeline` to get your hands
+Once you have a working environment, step through :doc:`/beginner/building-first-pipeline/index` to get your hands
 dirty creating your very first data pipeline!
 
 Check back frequently to find new tutorials getting added!
@@ -33,4 +33,4 @@ http://docs.datajoint.io.
    :caption: Tutorials
    :name: beginner/index
 
-   beginner/first_pipeline
+   beginner/building-first-pipeline/index

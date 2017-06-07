@@ -2,7 +2,7 @@ Setting up for DataJoint
 ------------------------
 **Author**: Edgar Y. Walker
 
-*Updated**: 2017-06-05
+**Updated**: 2017-06-05
 
 In this tutorial, we will cover how to setup a DataJoint Python or MATLAB development environment suitable
 for following the other tutorials and to explore DataJoint in general. A functional DataJoint development 

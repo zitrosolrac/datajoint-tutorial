@@ -59,8 +59,40 @@ like.
 Defining your table module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each ``.py`` you create is actually
+Each ``.py`` file you create is actually called a module, and can be imported using the familar ``import ...`` syntax.
+Pick a convenient location in your file system, and create a file called ``tutorial_tables.py``, and place the code
+from :doc:`first-table` in there, including schema and class definition. Your file content should look something
+like the following:
 
+.. code-block:: python
+  
+  import datajoint as dj
+
+  schema = dj.schema('tutorial', locals())       # this might differ depending on how you setup
+
+  @schema
+  class Mouse(dj.Manual):
+        definition = """
+        mouse_id: int                  # unique mouse id
+        ---
+        dob: date                      # mouse date of birth
+        gender: enum('M', 'F', 'U')    # gender of mouse - Male, Female, or Unknown/Unclassified
+        """
+
+Once completed, start a new Python console session **in the directory that contains the ``tutorial_tables.py``** file,
+and run the following:
+
+.. code-block:: python
+
+  >>> import datajoint as dj
+  >>> dj.config['database.host'] = ...      # specify your database address
+  >>> dj.config['database.user'] = ...      # specify your username
+  >>> dj.config['database.password'] = ...  # specify your password
+  >>> from tutorial_tables import *
+
+This will make the content of your Python file available for use in the interactive session. As you define more tables,
+go ahead and add them to the ``tutorial_tables.py``, and you can simply import all table definitions at the beginning
+of a new interactive session. 
 
 
 What's next?
