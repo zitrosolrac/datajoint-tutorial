@@ -32,7 +32,7 @@ h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend, p.capti
 
 /* Mobile */
 .wy-nav-top {
-    background-image: url('../img/djopen-fullLogoWhite2.svg');
+    background-image: url('../img/djTutorialLogoWhite.svg');
     background-color: #343131;
     background-repeat: no-repeat;
     background-position: center;
@@ -51,6 +51,19 @@ h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend, p.capti
     .wy-nav-top > i { /* for the collapsed menu */
         color: #fff;
     }
+}
+
+/* link images to dj.io and docs.dj */
+#footerThumbnail {
+    width: 120px;
+    display: inline-block;
+    float: right;
+}
+
+#breadcrumbsThumbnail {
+    width: 120px;
+    display: inline-block;
+    float: right;
 }
 
 /* To scale the side bar logo correctly */
