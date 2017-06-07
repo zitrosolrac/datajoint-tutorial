@@ -245,6 +245,8 @@ Recall that we wanted to load the neuron activity data from each recorded ``Sess
          # insert the key into self
          self.insert1(key)
 
+         print('Populated a neuron for {mouse_id} on {session_date}'.format(**key))
+
 Let's now take a look a the content of ``_make_tuples`` one step at a time.
 
 .. code-block:: python
@@ -262,6 +264,8 @@ Let's now take a look a the content of ``_make_tuples`` one step at a time.
 
          # insert the key into self
          self.insert1(key)
+
+         print('Populated a neuron for {mouse_id} on {session_date}'.format(**key))
 
 First of all, we use the passed in ``key`` dictionary containing the ``mouse_id`` and ``session_date``
 of a single session to determine the path to the neuron data file recorded in that particular session.
@@ -288,6 +292,8 @@ and substitute in the specific session's values to get the file name.
          # insert the key into self
          self.insert1(key)
 
+         print('Populated a neuron for {mouse_id} on {session_date}'.format(**key))
+
 We then load the data from the ``.npy`` data file, getting a NumPy array that contains the
 recorded neuron's activity from that session.
 
@@ -307,6 +313,8 @@ recorded neuron's activity from that session.
 
          # insert the key into self
          self.insert1(key)
+
+         print('Populated a neuron for {mouse_id} on {session_date}'.format(**key))
 
 The loaded NumPy array data is then assigned to the ``key`` dictionary under attribute name
 ``activity``. Recall that this is the non-primary key ``longblob`` field that we added to
@@ -332,6 +340,8 @@ value of the ``activity`` holding the recorded activity for that neuron.
          # insert the key into self
          self.insert1(key)
 
+         print('Populated a neuron for {mouse_id} on {session_date}'.format(**key))
+
 We then finally insert this dictionary containing a single neuron's activity into ``self``, which
 of course points to ``Neuron``! With this implementation of ``_make_tuples``, when the ``populate``
 method is called, ``Neuron`` will be **populated** with recorded neuron's activity from each 
@@ -343,7 +353,80 @@ Populating ``Neuron`` table
 Go ahead and redefine the ``Neuron`` class with the updated ``_make_tuples`` method as given
 above. And now let's call the ``populate`` method on a new instance of ``Neuron`` again!
 
-.. code
+.. code-block:: python
 
+  >>> neuron = Neuron()
+  >>> neuron.populate()
+  Populated a neuron for 0 on 2017-05-15
+  Populated a neuron for 0 on 2017-05-19
+  Populated a neuron for 5 on 2017-01-05
+  Populated a neuron for 100 on 2017-05-25
 
-Go ahead redefine your 
+As expected the call to ``populate`` resulted in 4 neurons being inserted into ``Neuron``, one for
+each session! Let's now take a look at its contents:
+
+.. code-block:: python
+
+  >>> neuron
+  *mouse_id    *session_date  activity
+  +----------+ +------------+ +----------+
+  0            2017-05-15     <BLOB>
+  0            2017-05-19     <BLOB>
+  5            2017-01-05     <BLOB>
+  100          2017-05-25     <BLOB>
+   (4 tuples)
+
+Great! With a simple call to ``populate`` we were able to get the table content automatically imported
+from the data files!
+
+Multiple calls to populate
+--------------------------
+
+One very cool feature about ``populate`` is the fact it is **smart** and knows exactly
+what still needs to be populated and only call ``_make_tuples`` for the missing keys. For example,
+let's see what happens if we call ``populate`` on ``Neuron`` table again:
+
+.. code-block:: python
+
+  >>> neuron.populate()
+
+Notice that there was nothing printed out, indicating that **nothing was populated**. This is because
+``Neuron`` table is already populated with everything that's out there! This means that you can
+call the ``populate`` method on an ``dj.Imported`` as many times as you like without the fear of
+triggering unncessary computations!
+
+The power of this feature becomes even more apparent when new dataset becomes available. Suppose that
+you have performed an additional recording session. Insert the following entry into the
+``Session`` table:
+
+.. code-block:: python
+
+  >>> session.insert1((100, '2017-06-01', '1', 'Jake Reimer'))
+
+and download the following new recording data and place it into your ``data`` directory:
+
+:download:`data_100_2017-06-01.npy </_static/data/data_100_2017-06-01.npy>`
+
+Once you have inserted new entry into the ``Session`` table and downloaded the new recording file
+into your ``data`` directory, call ``populate`` again on ``Neuron``!
+
+.. code-block:: python
+
+  >>> neuron.populate()
+  Populated a neuron for 100 on 2017-06-01
+
+As you can see, the ``populate`` call automatically detected that there is one new entry (key) available
+to be populated and called ``_make_tuples`` on that missing key!
+
+By encompassing the logic of importing data for a single primary key in ``_make_tuples`` you can now
+easily import data from data files into the ``Imported`` table automatically as the data becomes
+available!
+
+What's next?
+------------
+Congratulations for completing this section! This was a lot of material but hopefully you saw how
+the simple logic of ``populate`` and ``_make_tuples`` can make a lot data importing task very
+streamlined and automated! In :doc:`the next and the last section <computed-table>` of this tutorial,
+we are going to explore computed tables that computes and stores results of data processing and
+computation in the data pipeline!
+
