@@ -36,7 +36,7 @@ As a mouse neuroscientist, lets assume the following about your experiments:
   than one mouse in a day! For each experimental **session**, you would like to record what mouse you worked
   with and when you performed the experiment. You would also like to keep track of other helpful information
   such as the particular collection of equipment or **experimental setup** you worked on.
-- Let's assume you're an electrophysiologist. That means that in each experimental **session**, you record electrical activity from one or more neurons. You use recording equipment
+- Let's assume you're an electrophysiologist. That means that in each experimental **session**, you record electrical activity from a single neuron in each session. You use recording equipment
   that produces separate data files for each neuron you recorded. 
 
 Notice how even in this very simple example there is a lot of related information that you need to keep track of to organize your data. For example, the neural activity you record may depend on the gender and genetic background of the mouse.
