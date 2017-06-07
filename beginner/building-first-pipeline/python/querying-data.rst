@@ -26,7 +26,7 @@ By default the data is retrieved as numpy structured array:
        ( 10, datetime.date(2017, 1, 1), 'F'),
        ( 11, datetime.date(2017, 1, 3), 'F'),
        (100, datetime.date(2017, 5, 12), 'F')],
-      dtype=[('mouse_id', '<i8'), ('dob', 'O'), ('gender', 'O')])
+      dtype=[('mouse_id', '<i8'), ('dob', 'O'), ('sex', 'O')])
 
 Alternatively, you can retrieve the data as a list of dictionaries:
 
@@ -35,16 +35,16 @@ Alternatively, you can retrieve the data as a list of dictionaries:
   >>> mouse.fetch(as_dict=True)   # retrieve all data as list of dictionaries
   [OrderedDict([('mouse_id', 0),
               ('dob', datetime.date(2017, 3, 1)),
-              ('gender', 'M')]),
+              ('sex', 'M')]),
  OrderedDict([('mouse_id', 1),
               ('dob', datetime.date(2016, 11, 19)),
-              ('gender', 'M')]),
+              ('sex', 'M')]),
 
  ...output truncated...
 
  OrderedDict([('mouse_id', 100),
               ('dob', datetime.date(2017, 5, 12)),
-              ('gender', 'F')])]
+              ('sex', 'F')])]
 
 Fetching specific attributes
 ----------------------------
@@ -63,8 +63,8 @@ This can also be used to fetch multiple attributes separately:
 
 .. code-block:: python
 
-  >>> gender, ids = mouse.fetch['gender', 'mouse_id']
-  >>> gender
+  >>> sex, ids = mouse.fetch['sex', 'mouse_id']
+  >>> sex
   array(['M', 'M', 'U', 'F', 'F', 'F', 'F'], dtype=object)
   >>> dob
   array([  0,   1,   2,   5,  10,  11, 100])
@@ -85,7 +85,7 @@ At the moment, the ``Mouse`` table contains several entries:
 .. code-block:: python
 
   >>> mouse
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M
@@ -109,7 +109,7 @@ can find information about the mouse with `mouse_id = 0` as follows:
 .. code-block:: python
 
   >>> mouse & 'mouse_id = 0'
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
    (1 tuples)
@@ -122,8 +122,8 @@ Now, let's say we want to list only male mice. This is easily done by:
 
 .. code-block:: python
 
-  >>> mouse & 'gender = "M"'
-  *mouse_id    dob            gender
+  >>> mouse & 'sex = "M"'
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M
@@ -139,7 +139,7 @@ We can also use inequalities in our query, for eample to search for all mice bor
 .. code-block:: python
 
   >>> mouse & 'dob > "2017-01-01"'
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   11           2017-01-03     F
@@ -150,8 +150,8 @@ Or you can find all mice that are **not** male:
 
 .. code-block:: python
   
-  >>> mouse & 'gender != "M"'
-  *mouse_id    dob            gender
+  >>> mouse & 'sex != "M"'
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   2            2016-11-20     U
   5            2016-12-25     F
@@ -167,8 +167,8 @@ You can also *combine* multiple restrictions to form more complex queries:
 
 .. code-block:: python
 
-  >>> mouse & 'dob > "2017-01-01"' & 'gender = "M"'  # all male mice born after Jan 1, 2017
-   *mouse_id    dob            gender
+  >>> mouse & 'dob > "2017-01-01"' & 'sex = "M"'  # all male mice born after Jan 1, 2017
+   *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
    (1 tuples)
@@ -182,8 +182,8 @@ For example, the earlier query:
 
 .. code-block:: python
 
-  >>> mouse & 'gender = "M"'
-  *mouse_id    dob            gender
+  >>> mouse & 'sex = "M"'
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M
@@ -194,10 +194,10 @@ can also be achieved using a dictionary as follows:
 .. code-block:: python
 
   >>> r = {
-        'gender': 'M'
+        'sex': 'M'
       }
   >>> mouse & r
-  *mouse_id    dob            gender
+  *mouse_id    dob            sex
   +----------+ +------------+ +--------+
   0            2017-03-01     M
   1            2016-11-19     M
@@ -213,9 +213,9 @@ result:
 
 .. code-block:: python
 
-  >>> (mouse & 'dob > "2017-01-01"' & 'gender = "M"').fetch()
+  >>> (mouse & 'dob > "2017-01-01"' & 'sex = "M"').fetch()
   array([(0, datetime.date(2017, 3, 1), 'M')],
-      dtype=[('mouse_id', '<i8'), ('dob', 'O'), ('gender', 'O')]) 
+      dtype=[('mouse_id', '<i8'), ('dob', 'O'), ('sex', 'O')]) 
 
 Not only does querying with DataJoint makes retrieving certain subsets of data easier, it also helps you
 avoid unnecessary data transfers between the database server and your computer. While you are
