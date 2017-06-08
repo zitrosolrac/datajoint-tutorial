@@ -71,6 +71,7 @@ Ready to start building your data pipeline in Python? Proceed to :doc:`python/fi
    python/child-table
    python/more-queries
    python/importing-data
+   python/computed-table
 
 
 Building in MATLAB

@@ -6,7 +6,7 @@ for use throughout the tutorial and beyond. We will review three major options, 
 most recommended) to the more involved but highly customizable.
 
 Connect to DataJoint.io_ (Recommended)
----------------------------------------------------------------
+--------------------------------------
 
 .. _DataJoint.io: https://datajoint.io
 
@@ -39,7 +39,7 @@ DataJoint.io_ also offers a general database hosting service to host entire data
 you are interested in finding out more, be sure to visit us at https://datajoint.io!
 
 Setting up a local database server (Intermediate)
------------------------------------------------
+-------------------------------------------------
 
 Alternatively you can install and set up a database server to run on your local machine. This offers a very
 portable solution, but it requires some additional steps to deploy the server. If you
@@ -58,7 +58,7 @@ You can find a step-by-step instructions on setting up a local database server u
    local-database
 
 Setting up a database server on another machine (Advanced)
-----------------------------------------------------
+----------------------------------------------------------
 
 Finally, you might want to set up a database server on dedicated server hardware. 
 Properly setting up and maintaing a database server can require significant IT expertise and
