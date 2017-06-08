@@ -87,7 +87,7 @@ html_static_path = ['_static']
 
 html_theme = 'datajoint_theme'
 html_theme_path = ['.']
-html_logo = '_static/img/djopen-fullLogoWhite2.svg'
+html_logo = '_static/img/djTutorialLogoWhite.svg'
 html_theme_options = {
     'collapse_navigation': False,
     'display_version': False,
