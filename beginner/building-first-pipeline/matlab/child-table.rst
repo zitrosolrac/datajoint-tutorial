@@ -6,7 +6,8 @@ session. In doing so, we will see how to **link** two tables via dependencies, e
 one table **depends** on another table.
 
 Defining ``tutorial.Session`` table
---------------------------
+-----------------------------------
+
 Now we have defined the ``Mouse`` table to store and identify all mice in our lab, we would like to
 define a table called ``Session`` that will keep track of data related to all mouse experiments.
 
@@ -226,6 +227,7 @@ Let's first try deleting an unrelated mouse entry:
 The ``del`` method warns you that you will be deleting one entry from ``tutorial.Mouse``, as expected. Type 'no' to cancel the deletion, and now let's see what happens when we try to delete ``mouse_id=0``:
 
 .. code-block:: matlab
+
    >> del(tutorial.Mouse & 'mouse_id = 0')   % delete mouse with ID of 0
 
    ABOUT TO DELETE:

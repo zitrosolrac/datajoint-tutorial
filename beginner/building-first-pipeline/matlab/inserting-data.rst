@@ -95,7 +95,9 @@ and insert them all together.
 
 Verify the insert:
 
-.. code-block:: matlab>> tutorial.Mouse
+.. code-block:: matlab
+
+   >> tutorial.Mouse
 
    ans = 
 
@@ -166,6 +168,7 @@ key values. You can see this check in action by trying to insert a new entry wit
 in the table.
 
 .. code-block:: matlab
+
   >> insert(tutorial.Mouse,{0, '2015-03-03', 'U'})  % mouse
   Error using mym
   Duplicate entry '0' for key 'PRIMARY'
