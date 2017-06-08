@@ -20,7 +20,7 @@ Let's get started by importing DataJoint and creating a new schema to define tab
   If you need a review on how to connect to the database from DataJoint, checkout :ref:`configure-matlab-dj`.
 
 
-Let's create our first schema called ``tutorial``! Type `dj.createSchema` and enter ``tutorial_db`` when prompted for the database name.
+Let's create our first schema called ``tutorial``! Type ``dj.createSchema`` and enter ``tutorial_db`` when prompted for the database name.
 
 
 .. code-block:: matlab
