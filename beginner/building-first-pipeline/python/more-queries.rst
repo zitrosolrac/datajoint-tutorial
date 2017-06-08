@@ -264,7 +264,7 @@ for male mice with experiment session performed on or after 2017-05-19:
 Notice how we were able to use attributes from both ``Mouse`` (``sex``) and ``Session`` (``session_date``)
 together.
 
-What's Next?
+What's next?
 ------------
 Phew! That was a lot of material but hopefully you saw how you can form powerful queries using DataJoint's
 intuitive query language! Go ahead and spend some more time playing with the queries and see if you can come

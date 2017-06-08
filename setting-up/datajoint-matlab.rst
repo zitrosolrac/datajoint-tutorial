@@ -100,8 +100,8 @@ If you get a message that looks like above, then congratulations! You have just 
   The exact message will look different depending on what database server you are
   connected to.
 
-What's next
------------
+What's next?
+------------
 
 If everything went well, you now have a fully functional developement environment for DataJoint,
 with a database server. You can now move onto :doc:`/beginner/building-first-pipeline/index`

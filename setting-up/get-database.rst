@@ -23,7 +23,7 @@ Signing up for a free tutorial database server
 
 1. Visit https://datajoint.io and click on the Sign Up button. 
 2. Fill out your email and association.
-3. Check "I want to sign up for tutorial database access"
+3. Select "Yes" to the question "Interested in signing up for database?"
 4. Choose and enter a username. If available, this will be your database username.
 5. Hit submit. You request will be reviewed and you will receive an email with database connection 
    information typically within 48 hours.

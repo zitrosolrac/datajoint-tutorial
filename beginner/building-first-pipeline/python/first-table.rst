@@ -1,21 +1,24 @@
 Defining your first table
 =========================
 
-Every pipeline is composed of one or more **tables**. Each table represents a specific set of data. In the simplest situation, a table can contain data entered either manually by a human or automatically by some other piece of software. These ``Manual`` tables are similar to a spreadsheet in Excel, for example. A table always belongs to a **schema** which helps to organize tables into groups. By placing related
-tables into one **schema** you can keep your data pipeline well structured.
+Every pipeline is composed of one or more **tables**. Each table represents a specific set of data. 
+In the simplest situation, a table can contain data entered either manually by a human or automatically 
+by some other piece of software. These ``Manual`` tables are similar to a spreadsheet in Excel, 
+for example. A table always belongs to a **schema** which helps to organize tables into groups. 
+By placing related tables into one **schema** you can keep your data pipeline well structured.
 
 .. note::
 
-  This tutorial assumes that you already have a database server that you can connect to and that you have installed DataJoint
-  for Python. If either of this is not true, be sure to checkout our :doc:`Getting Started Tutorial </setting-up/introduction>`
-  first before proceeding with this tutorial!
+  This tutorial assumes that you already have a database server that you can connect to and that you have 
+  installed DataJoint for Python. If either of this is not true, be sure to checkout our 
+  :doc:`Getting Started Tutorial </setting-up/introduction>` first before proceeding with this tutorial!
 
 
 Creating a schema
 -----------------
 
-Let's get started by importing DataJoint and creating a new schema to define tables in. Open up an interactive
-Python console and import ``datajoint``:
+Let's get started by importing DataJoint and creating a new schema to define tables in. 
+Open up an interactive Python console and import ``datajoint``:
 
 .. code-block:: python
 
@@ -34,7 +37,7 @@ Set up your connection to the database server.
   If you need a review on how to connect to the database from DataJoint, checkout :ref:`configure-python-dj`.
 
 
-Let's create our first schema called `tutorial`!
+Let's create our first schema called ``tutorial``!
 
 
 .. code-block:: python
@@ -42,9 +45,9 @@ Let's create our first schema called `tutorial`!
   schema = dj.schema('tutorial', locals())
 
 .. note::
-  If you are connected to the tutorial database hosted by `DataJoint.io <https://datajoint.io>`_, you will have to prefix 
-  all schema name with ``username_`` substituting in the username for the connection. For example, if your username is 
-  ``johndoe``, then you would want to run the following command instead:
+  If you are connected to the tutorial database hosted by `DataJoint.io <https://datajoint.io>`_, 
+  you will have to prefix all schema name with ``username_`` substituting in the username for the connection. 
+  For example, if your username is ``johndoe``, then you would want to run the following command instead:
 
   .. code-block:: python
     
@@ -89,6 +92,10 @@ In addition to specifying the type or "tier" of the table (e.g. ``dj.Manual``), 
 columns or **attributes** of the table. You do this by setting the ``definition`` to a string with
 DataJoint data definition language. Let's take a closer look a the definition string here.
 
+
+Table comment
++++++++++++++
+
 .. code-block:: python
    :emphasize-lines: 2
 
@@ -99,10 +106,6 @@ DataJoint data definition language. Let's take a closer look a the definition st
    dob: date                      # mouse date of birth
    sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
    """
-
-Table comment
-+++++++++++++
-
 The very first line of the definition starts with a comment that describes what this table is about. Although
 this is optional, leaving a meaningful comment here can be really helpful when you start defining
 increasingly complex tables.
@@ -131,7 +134,7 @@ a separate line. The attribute definition takes the following format:
 As you probably can guess, the ``attribute_name`` is the name of the attribute. Separated by ``:``, you then
 specify the **data type** of the attribute. This determines what kind of data can go into that attribute. 
 
-For `mouse_id`, we have chosen type ``int`` which can hold integers between -2147483648 and 2147483647, with
+For ``mouse_id``, we have chosen type ``int`` which can hold integers between -2147483648 and 2147483647, with
 the exact range depending on your database server. Since we don't expect to have that many mice, ``int`` is
 a safe choice for holding the numerical ID for the mouse. 
 
