@@ -123,7 +123,7 @@ This results in:
   100          2017-05-12     F
    (7 tuples)
 
-.. _duplicate-entry:
+.. _python-duplicate-entry:
 
 Data integrity
 --------------

@@ -243,7 +243,7 @@ we **have to** delete both the parent and the dependent entries all together!
 
 This **cascading delete** ensures that you cannot leave data entries "orphaned" - leaving behind
 entries that depends on non-existent parent entries. In addition to the prevention of duplication
-entries as we saw in :ref:`duplicate-entry`, foreign key constraint (dependency) checks and
+entries as we saw in :ref:`matlab-duplicate-entry`, foreign key constraint (dependency) checks and
 cascading deletes are a key part of DataJoint's strength in maintaining data integrity.
 
 What's next?

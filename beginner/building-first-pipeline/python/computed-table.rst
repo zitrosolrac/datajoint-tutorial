@@ -101,9 +101,6 @@ As you might have guessed, you subclass from ``dj.Computed`` to defined a comput
           self.insert1(key)
           print('Computed statistics for mouse_id {mouse_id} session_date {session_date}'.format(**key))
 
-.. code-block:: python
-  :emphasize-lines: 3-7
-
 Here each ``ActivityStatistics`` entry **depends** on ``Neuron``. Because the ``ActivityStatistics``
 table does not define any additional primary key attribute (i.e. no other attribute entries above 
 ``---`` separator), each row in the ``ActivityStatistics`` table is uniquely identified by a 
