@@ -20,7 +20,7 @@ of the attributes in the table:
 
   mouse.insert1( (0, '2017-03-01', 'M') )
 
-Here we used the table's ``insert1`` method to insert a new mouse with ``mouse_id`` of ``1``, ``dob``
+Here we used the table's ``insert1`` method to insert a new mouse with ``mouse_id`` of ``0``, ``dob``
 (date of birth) of ``2017-03-01`` and ``sex`` ``M`` (male).
 
 Verify the new entry by checking the table's content again:

@@ -20,7 +20,7 @@ Let's get started by importing DataJoint and creating a new schema to define tab
   If you need a review on how to connect to the database from DataJoint, checkout :ref:`configure-matlab-dj`.
 
 
-Let's create our first schema called `tutorial`! Type `dj.createSchema` and enter `tutorial_db` when prompted for the database name.
+Let's create our first schema called ``tutorial``! Type `dj.createSchema` and enter ``tutorial_db`` when prompted for the database name.
 
 
 .. code-block:: matlab
@@ -28,7 +28,7 @@ Let's create our first schema called `tutorial`! Type `dj.createSchema` and ente
   dj.createSchema
   Enter database name >> tutorial_db
 
-Then a GUI window will appear to prompt you for the package folder. Navigate to your desired directory and enter `+tutorial` to create a new package folder.
+Then a GUI window will appear to prompt you for the package folder. Navigate to your desired directory and enter ``+tutorial`` to create a new package folder.
 
 .. note::
   If you are connected to the tutorial database hosted by `DataJoint.io <https://datajoint.io>`_, you will have to prefix 
@@ -55,7 +55,7 @@ Now we will create a new table. In our hypothetical example, everything starts w
   mouse_id: int                  # unique mouse id
   ---
   dob: date                      # mouse date of birth
-  sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
+  sex: enum('M', 'F', 'U')       # sex of mouse - Male, Female, or Unknown/Unclassified
   %}
 
   classdef Mouse < dj.Manual
@@ -79,19 +79,20 @@ DataJoint data definition language. Let's take a closer look a the definition st
 
 .. code-block:: matlab
    :emphasize-lines: 2
-    %{
+
+  %{
   # mouse
   mouse_id: int                  # unique mouse id
   ---
   dob: date                      # mouse date of birth
-  sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
+  sex: enum('M', 'F', 'U')       # sex of mouse - Male, Female, or Unknown/Unclassified
   %}
 
 
 Table comment
 +++++++++++++
 
-The very first line of the definition starts with a `# comment` that describes what this table is about. Although
+The very first line of the definition starts with a ``# comment`` that describes what this table is about. Although
 this is optional, leaving a meaningful comment here can be really helpful when you start defining
 increasingly complex tables.
 
@@ -100,12 +101,13 @@ Attribute (column) definition
 
 .. code-block:: matlab
    :emphasize-lines: 3
+
   %{
   # mouse
   mouse_id: int                  # unique mouse id
   ---
   dob: date                      # mouse date of birth
-  sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
+  sex: enum('M', 'F', 'U')       # sex of mouse - Male, Female, or Unknown/Unclassified
   %}
 
 In the definition string, you define the table's attributes (or columns) one at a time, each in
@@ -118,7 +120,7 @@ a separate line. The attribute definition takes the following format:
 As you probably can guess, the ``attribute_name`` is the name of the attribute. Separated by ``:``, you then
 specify the **data type** of the attribute. This determines what kind of data can go into that attribute. 
 
-For `mouse_id`, we have chosen type ``int`` which can hold integers between -2147483648 and 2147483647, with
+For ``mouse_id``, we have chosen type ``int`` which can hold integers between -2147483648 and 2147483647, with
 the exact range depending on your database server. Since we don't expect to have that many mice, ``int`` is
 a safe choice for holding the numerical ID for the mouse. 
 
@@ -136,19 +138,20 @@ Primary vs non-primary key attributes
 
 .. code-block:: matlab
    :emphasize-lines: 4
+
   %{
   # mouse
   mouse_id: int                  # unique mouse id
   ---
   dob: date                      # mouse date of birth
-  sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
+  sex: enum('M', 'F', 'U')       # sex of mouse - Male, Female, or Unknown/Unclassified
   %}
 
 The ``---`` separator separates two types of attributes in the table. Above the line are your **primary-key
 attributes**. These attributes are used to **uniquely identify** entries in the table. Within a table, the
 combination of the primary-key attributes values **must be unique**. In this case, we only have one attribute
 in the primary key (``mouse_id``) and thus every entry in the table must have a distinct ``mouse_id``,
-corresponding to actual mouse.
+corresponding to an actual mouse.
 
 Below the ``---`` separator are **non-primary-key attributes**. As you would guess, these are attributes
 that are **not** used to identify the mouse. Typically, these attributes hold values that describe the entry
@@ -157,15 +160,16 @@ that are **not** used to identify the mouse. Typically, these attributes hold va
 Defining a table in a schema
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Save your new class as `Mouse.m` in the `+tutorial` package folder. You may notice that there is a new function `getSchema` in that folder that was created by `dj.createSchema`. This function returns the schema object that links the Matlab package `+tutorial` with the `tutorial_db` schema in the database. 
+Save your new class as ``Mouse.m`` in the ``+tutorial`` package folder. You may notice that there is a new function ``getSchema`` in that folder that was created by ``dj.createSchema``. This function returns the schema object that links the Matlab package ``+tutorial`` with the ``tutorial_db`` schema in the database. 
 
 Creating the table in the data pipeline
 ---------------------------------------
 
-Calling the `Mouse` class for the first time  creates the 
+Calling the ``Mouse`` class for the first time  creates the 
 corresponding table in the database server. DataJoint displays the SQL code used to create the table.
 
 .. code-block:: matlab
+
    ans = 
 
    <SQL>
@@ -180,7 +184,7 @@ corresponding table in the database server. DataJoint displays the SQL code used
    ) ENGINE = InnoDB, COMMENT "mouse"
    </SQL>
 
-You can check the contents of the table in the database by typing `tutorial.Mouse`:
+You can check the contents of the table in the database by typing ``tutorial.Mouse``:
 
 .. code-block:: matlab
 
@@ -211,8 +215,8 @@ For example, you might have made a spelling error in your definition:
    # mouse
    mose_id: int                  # unique mouse id
    ---
-   dob: date                      # mouse date of birth
-   sx: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or  Unknown/Unclassified
+   dob: date                     # mouse date of birth
+   sx: enum('M', 'F', 'U')       # sex of mouse - Male, Female, or  Unknown/Unclassified
    %}
 
    classdef Mouse < dj.Manual
