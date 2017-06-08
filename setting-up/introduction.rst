@@ -20,7 +20,7 @@ System requirements
     running MacOS, Windows or Linux operating system with either Python 3 or MATLAB already installed,
     depending on your language preference. DataJoint for Python requires Python 3.4 or above with `pip`
     already configured (for help on setting up a Python development environment, you can find great 
-    resources online including `this <http://python-guide-pt-br.readthedocs.io/>`_). DataJoint for 
+    resources online including `this <http://python-guide-pt-br.readthedocs.io/en/latest/>`_). DataJoint for 
     MATLAB requires MATLAB verion 2015b or later.
 
 What's next?

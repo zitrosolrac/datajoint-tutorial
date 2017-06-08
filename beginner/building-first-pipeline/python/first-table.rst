@@ -10,7 +10,7 @@ By placing related tables into one **schema** you can keep your data pipeline we
 .. note::
 
   This tutorial assumes that you already have a database server that you can connect to and that you have 
-  installed DataJoint for Python. If either of this is not true, be sure to checkout our 
+  installed DataJoint for Python. If either of these is not true, be sure to checkout our 
   :doc:`Getting Started Tutorial </setting-up/introduction>` first before proceeding with this tutorial!
 
 
@@ -83,7 +83,7 @@ Table classes
 ^^^^^^^^^^^^^
 In DataJoint, tables are defined and accessed via **classes** inheriting from one of the table superclasses
 provided by DataJoint. Since we will be entering data about new mice manually, we want to create a table
-called "Mouse" as a manual table. You do so by defining a class called ``Mouse`` and inheriting from 
+called ``Mouse`` as a manual table. You do so by defining a class called ``Mouse`` and inheriting from 
 ``dj.Manual`` super-class.
 
 Table definition
@@ -245,16 +245,12 @@ For example, you might have made a spelling error in your definition:
         """
 
 Notice that both ``mouse_id`` and ``sex`` attributes are spelled incorrectly! If you don't notice the
-error before you instantiated your table class:
-
-.. code-block:: python
-  
-  mouse = Mouse()   # instantiating table with errors in definition
-
-Then your table will be defined in the data pipeline containing these mistakes:
+error before you execute the class definition statment, then your table will be defined in the data 
+pipeline containing these mistakes:
 
 .. code-block:: python
 
+  >>> mouse = Mouse()
   >>> mouse    # view the table
   *mose_id    dob     sx
   +---------+ +-----+ +------+
@@ -286,7 +282,7 @@ either result in a reprompt or cancellation. Type in ``yes`` at the prompt to co
 Now the table is dropped, you can fix errors in your class ``definition`` and recreate the table.
 
 .. note::
-  As the prompt for the ``drop`` method suggestion, you might want to restart your Python kernel after dropping
+  As the prompt for the ``drop`` method suggests, you might want to restart your Python kernel after dropping
   tables. This can be important when rendering diagrams to show table connections.
 
 What's next?
