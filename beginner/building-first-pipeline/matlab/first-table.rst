@@ -78,7 +78,7 @@ columns or **attributes** of the table. You define these in the header comment o
 DataJoint data definition language. Let's take a closer look a the definition string here.
 
 .. code-block:: matlab
-   :emphasize-lines: 2
+  :emphasize-lines: 2
 
   %{
   # mouse
@@ -100,7 +100,7 @@ Attribute (column) definition
 +++++++++++++++++++++++++++++
 
 .. code-block:: matlab
-   :emphasize-lines: 3
+  :emphasize-lines: 3
 
   %{
   # mouse
@@ -137,7 +137,7 @@ Primary vs non-primary key attributes
 +++++++++++++++++++++++++++++++++++++
 
 .. code-block:: matlab
-   :emphasize-lines: 4
+  :emphasize-lines: 4
 
   %{
   # mouse
@@ -178,7 +178,7 @@ corresponding table in the database server. DataJoint displays the SQL code used
    mouse id",
    `dob` date                       NOT NULL COMMENT "mouse date      
    of birth",
-`  sex` enum('M', 'F', 'U') NOT NULL COMMENT "sex of  mouse -    
+   sex` enum('M', 'F', 'U') NOT NULL COMMENT "sex of  mouse -    
    Male, Female, or Unknown/Unclassified",
    PRIMARY KEY (`mouse_id`)
    ) ENGINE = InnoDB, COMMENT "mouse"

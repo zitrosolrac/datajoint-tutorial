@@ -161,7 +161,7 @@ the method ``_make_tuples`` is not defined. To get a better sense of what's goin
 back to our class definition and add a very basic ``_make_tuples`` method:
 
 .. code-block:: python
-   :emphasize-lines: 9,10
+  :emphasize-lines: 9,10
 
   @schema
   class Neuron(dj.Imported):

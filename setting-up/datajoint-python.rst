@@ -17,7 +17,7 @@ If the above command runs without an error and the version is at least `3.4` (e.
 then you are good to go!
 
 Installing the DataJoint Package
-----------------------------
+--------------------------------
 
 The entire source code for DataJoint Python is made available at `datajoint/datajoint-python <https://github.com/datajoint/datajoint-python>`_ 
 GitHub repository. Although you certainly can install DataJoint directly from the source, it will be much 
