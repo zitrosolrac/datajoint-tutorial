@@ -246,6 +246,22 @@ alltogether. You can do so as follows:
 
 Now the table is dropped, you can fix errors in your class ``definition`` and recreate the table.
 
+Where is my data pipeline stored?
+---------------------------------
+
+When you create tables in DataJoint, there are actually two things getting created: the table Matlab classes
+(e.g. ``Mouse`` class) and the actual table in the database. As you saw above,
+you define a class in Matlab to define and access a table in the database. 
+
+Therefore, your data pipeline consists of two parts. One is the actual tables in the database server you created
+using DataJoint. These tables (and schemas) persists across sessions, and all the data you inserted are stored
+in the database server. Another part is the code you wrote to define and manipulate the tables - the schemas and
+classes!
+
+So, in order for you or anyone else to access the content of the table in the database server, not only do they
+need access to the database server (and the right permissions) but also the code for the schema and classes
+that defines what tables exist. For one schema, these are all stored in the same Matlab package folder (in this case, ``+tutorial``.
+
 What's next?
 ------------
 Congratulations again! You have successfully created your first table in your data pipeline. 

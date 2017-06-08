@@ -186,7 +186,5 @@ requiring much effort from your side).
 What's next?
 ------------
 Now that you have successfully entered some data into your first table, the data pipeline has some data to work
-with. In the next section, we will look at how to query and fetch data from your table!
-But before we do that, let's take a loot at how to save your work in the 
-:doc:`next section <save-tables>`. This way, you can take a break and then later pick up this tutorial
-right where you left off without fear of losing your work!
+with. In the 
+:doc:`next section <querying-data>`, we will look at how to query and fetch data from your table!
