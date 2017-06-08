@@ -100,7 +100,7 @@ Let's insert a new session into `Session` table
         'experimenter': 'Edgar Y. Walker'
       }
   >>> session.insert1(data)
-  >>> sesssion
+  >>> session
   *mouse_id    *session_date  experiment_set experimenter
   +----------+ +------------+ +------------+ +------------+
   0            2017-05-15     0              Edgar Y. Waker
