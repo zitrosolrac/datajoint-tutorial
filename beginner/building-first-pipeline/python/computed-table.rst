@@ -68,7 +68,7 @@ As usual, let's take a look at it step by step!
 As you might have guessed, you subclass from ``dj.Computed`` to defined a computed table in DataJoint.
 
 .. code-block:: python
-  :emphasize-lines: 3,4,5
+  :emphasize-lines: 3-7
 
   @schema
   class AverageActivity(dj.Computed):
@@ -93,7 +93,7 @@ neuron.
 
 
 .. code-block:: python
-  :emphasize-lines: 7,8,9,10
+  :emphasize-lines: 9-14
 
   @schema
   class AverageActivity(dj.Computed):
