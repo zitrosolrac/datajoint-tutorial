@@ -106,6 +106,7 @@ Table comment
    dob: date                      # mouse date of birth
    sex: enum('M', 'F', 'U')    # sex of mouse - Male, Female, or Unknown/Unclassified
    """
+
 The very first line of the definition starts with a comment that describes what this table is about. Although
 this is optional, leaving a meaningful comment here can be really helpful when you start defining
 increasingly complex tables.
