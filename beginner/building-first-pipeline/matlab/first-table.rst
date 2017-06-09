@@ -26,7 +26,7 @@ Let's create our first schema called ``tutorial``! Type ``dj.createSchema`` and 
 .. code-block:: matlab
 
   dj.createSchema
-  Enter database name >> tutorial_db
+  Enter database name >> tutorial
 
 Then a GUI window will appear to prompt you for the package folder. Navigate to your desired directory and enter ``+tutorial`` to create a new package folder.
 
@@ -38,7 +38,7 @@ Then a GUI window will appear to prompt you for the package folder. Navigate to 
 .. code-block:: matlab
 
   dj.createSchema
-  Enter database name >> johndoe_tutorial_db
+  Enter database name >> johndoe_tutorial
 
 
 And that's it! We have just created a schema in the database, and now we can now begin creating tables inside of this schema.
@@ -46,7 +46,9 @@ And that's it! We have just created a schema in the database, and now we can now
 Defining the Mouse table class
 ------------------------------
 
-Now we will create a new table. In our hypothetical example, everything starts with a particular mouse. So let's create a table to enter and track all the mice we will work with. Open a new script and copy the following:
+Now we will create a new table. In our hypothetical example, everything starts with a particular mouse. 
+So let's create a table to enter and track all the mice we will work with. Open a new script called
+``Mouse.m`` inside your newly crated ``+tutorial`` package and copy the following into the file:
 
 .. code-block:: matlab
 
@@ -77,6 +79,10 @@ In addition to specifying the type or "tier" of the table (e.g. ``dj.Manual``), 
 columns or **attributes** of the table. You define these in the header comment of the class using the
 DataJoint data definition language. Let's take a closer look a the definition string here.
 
+
+Table comment
++++++++++++++
+
 .. code-block:: matlab
   :emphasize-lines: 2
 
@@ -87,10 +93,6 @@ DataJoint data definition language. Let's take a closer look a the definition st
   dob: date                      # mouse date of birth
   sex: enum('M', 'F', 'U')       # sex of mouse - Male, Female, or Unknown/Unclassified
   %}
-
-
-Table comment
-+++++++++++++
 
 The very first line of the definition starts with a ``# comment`` that describes what this table is about. Although
 this is optional, leaving a meaningful comment here can be really helpful when you start defining
@@ -242,6 +244,7 @@ alltogether. You can do so as follows:
   >>drop(tutorial.Mouse)
   ABOUT TO DROP TABLES: 
   `tutorial`.`mouse` (manual,    0 tuples)
+  Proceed? (y/N)  y
   Dropped table `tutorial`.`mouse`
 
 Now the table is dropped, you can fix errors in your class ``definition`` and recreate the table.
@@ -260,7 +263,8 @@ classes!
 
 So, in order for you or anyone else to access the content of the table in the database server, not only do they
 need access to the database server (and the right permissions) but also the code for the schema and classes
-that defines what tables exist. For one schema, these are all stored in the same Matlab package folder (in this case, ``+tutorial``.
+that defines what tables exist. For one schema, these are all stored in the same Matlab package folder 
+(in this case, ``+tutorial``).
 
 What's next?
 ------------

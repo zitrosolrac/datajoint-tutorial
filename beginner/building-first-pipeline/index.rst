@@ -92,7 +92,6 @@ Ready to start building your data pipeline in MATLAB? Proceed to :doc:`matlab/fi
 
    matlab/first-table
    matlab/inserting-data
-   matlab/save-tables
    matlab/querying-data
    matlab/child-table
    matlab/more-queries

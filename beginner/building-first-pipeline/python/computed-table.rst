@@ -1,49 +1,55 @@
 Computation in data pipeline
 ============================
 
-Welcome to the last (but certainly not the least exciting) section of the tutorial! Now that we
-have some recorded neural data imported into a table (``Neuron``), we are going to look at defining
-a table that will automatically perform and store results of data processing/computation on
-data from other tables. In doing so, we are going to meet two remaining major table tiers:
+Welcome to the last (but certainly not the least!) section of the tutorial! Now that we
+have some recorded neural data imported into a table (``Neuron``), we are going to perform
+some computations and processing, and look at how we can store these results naturally into
+tables. In doing so, we are going to meet two remaining major table tiers:
 lookup table (``dj.Lookup``) and computed table (``dj.Computed``).
 
-Detecting spikes in electric activity
--------------------------------------
-Now we have the "raw" electric activities from neurons, we would like to detect spikes in the activity
-automatically. To do this, we are going implement a very simple-mided threshold based spike detection
-algorithm. But before we delve far into the implementation, let's step back and think about **how**
-this computation should take place and **where** the results would be stored. The answer lies in
-understanding "computed" tables.
+Performing computation on data
+------------------------------
+Now we have the "raw" electric activities from neurons, we would like to detect spikes automatically.
+Before we tackle this challenge, let's first get a better idea about our data by computing a few
+statistics on the data such as mean and standard deviation of the electric activity.
 
 Defining computed tables
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 A crticial feature of a data pipeline is that not only the raw data (i.e. entered manually or imported
 from external source) but also the processed data and computation results reside in the same data
-pipeline. A **computed tables** are defined by specifying the computation to be performed on data
+pipeline. A **computed table** is defined by specifying the computation to be performed on data
 found in other table(s), and the results are stored inside the table itself.
 
-Interestingly a computed table (``dj.Computed``) makes use of the same ``populate`` and ``_make_tuples``
-logic that were used in imported tables (``dj.Imported``). Before tackling the spike detection algorithm,
-let's first try a simpler computation where we calculate the average activity of **each ``Neuron``**,
-and store the results in a table called ``AverageActivity``.
+Just like the imported tables (``dj.Imported``), computed tables (``dj.Computed``) provide the
+``populate`` method and ``_make_tuples`` method, and therefore provides us with a mechanism to
+perform computation on every combination of parent/depended tables!
+
+Let's now define our first computed table ``ActivityStatistics`` that **computes** the statistics
+of electric activity **for each neuron in ``Neuron``**.
+
 
 .. code-block:: python
 
   @schema
-  class AverageActivity(dj.Computed):
+  class ActivityStatistics(dj.Computed):
       definition = """
       -> Neuron
       ---
-      avg_activity: float    # average electric activity
+      mean: float    # mean activity
+      stdev: float   # standard deviation of activity
+      max: float     # maximum activity
       """
 
       def _make_tuples(self, key):
           activity = (Neuron() & key).fetch1['activity']    # fetch activity as NumPy array
-          key['avg_activity'] = activity.mean()
+
+          # compute various statistics on activity
+          key['mean'] = activity.mean()   # compute mean 
+          key['stdev'] = activity.std()   # compute standard deviation
+          key['max'] = activity.max()     # compute max
           self.insert1(key)
-          print('Average activity computed for mouse_id {mouse_id} \
-                 session_date {session_date}'.format(**key))
+          print('Computed statistics for mouse_id {mouse_id} session_date {session_date}'.format(**key))
 
 As usual, let's take a look at it step by step!
 
@@ -51,84 +57,99 @@ As usual, let's take a look at it step by step!
   :emphasize-lines: 2
 
   @schema
-  class AverageActivity(dj.Computed):
+  class ActivityStatistics(dj.Computed):
       definition = """
       -> Neuron
       ---
-      avg_activity: float    # average electric activity
+      mean: float    # mean activity
+      stdev: float   # standard deviation of activity
+      max: float     # maximum activity
       """
 
       def _make_tuples(self, key):
           activity = (Neuron() & key).fetch1['activity']    # fetch activity as NumPy array
-          key['avg_activity'] = activity.mean()
+
+          # compute various statistics on activity
+          key['mean'] = activity.mean()   # compute mean 
+          key['stdev'] = activity.std()   # compute standard deviation
+          key['max'] = activity.max()     # compute max
           self.insert1(key)
-          print('Average activity computed for mouse_id {mouse_id} \
-                 session_date {session_date}'.format(**key))
+          print('Computed statistics for mouse_id {mouse_id} session_date {session_date}'.format(**key))
 
 As you might have guessed, you subclass from ``dj.Computed`` to defined a computed table in DataJoint.
 
 .. code-block:: python
-  :emphasize-lines: 3-7
+  :emphasize-lines: 2
 
   @schema
-  class AverageActivity(dj.Computed):
+  class ActivityStatistics(dj.Computed):
       definition = """
       -> Neuron
       ---
-      avg_activity: float    # average electric activity
+      mean: float    # mean activity
+      stdev: float   # standard deviation of activity
+      max: float     # maximum activity
       """
 
       def _make_tuples(self, key):
           activity = (Neuron() & key).fetch1['activity']    # fetch activity as NumPy array
-          key['avg_activity'] = activity.mean()
+
+          # compute various statistics on activity
+          key['mean'] = activity.mean()   # compute mean 
+          key['stdev'] = activity.std()   # compute standard deviation
+          key['max'] = activity.max()     # compute max
           self.insert1(key)
-          print('Average activity computed for mouse_id {mouse_id} \
-                 session_date {session_date}'.format(**key))
+          print('Computed statistics for mouse_id {mouse_id} session_date {session_date}'.format(**key))
 
-Here each ``AverageActivity`` entry **depends** on ``Neuron``. Because ``AverageActivity`` defines
-no additional primary key attribute (no other attribute entries above ``---`` separator), each
-``AverageActivity`` is uniquely identified by a single ``Neuron``. Each entry of ``AverageActivity``
-then defines a float value ``avg_activity`` which will store the computed averate activity of the
-neuron.
-
+Here each ``ActivityStatistics`` entry **depends** on ``Neuron``. Because the ``ActivityStatistics``
+table does not define any additional primary key attribute (i.e. no other attribute entries above 
+``---`` separator), each row in the ``ActivityStatistics`` table is uniquely identified by a 
+single neuron in the ``Neuron`` table. Each entry in the ``ActivityStatistics`` table has 
+non-primary key attributes ``mean``, ``stdev`` and ``max`` to hold the mean, standard deviation
+and maximum value of the electric activity, respectively.
 
 .. code-block:: python
-  :emphasize-lines: 9-14
+  :emphasize-lines: 2
 
   @schema
-  class AverageActivity(dj.Computed):
+  class ActivityStatistics(dj.Computed):
       definition = """
       -> Neuron
       ---
-      avg_activity: float    # average electric activity
+      mean: float    # mean activity
+      stdev: float   # standard deviation of activity
+      max: float     # maximum activity
       """
 
       def _make_tuples(self, key):
           activity = (Neuron() & key).fetch1['activity']    # fetch activity as NumPy array
-          key['avg_activity'] = activity.mean()    # compute mean activity
-          self.insert1(key)   # insert result into self
-          print('Average activity computed for mouse_id {mouse_id} \
-                 session_date {session_date}'.format(**key))
+
+          # compute various statistics on activity
+          key['mean'] = activity.mean()   # compute mean 
+          key['stdev'] = activity.std()   # compute standard deviation
+          key['max'] = activity.max()     # compute max
+          self.insert1(key)
+          print('Computed statistics for mouse_id {mouse_id} session_date {session_date}'.format(**key))
 
 Just like imported table (``dj.Imported``), computed tables are equipped with ``populate`` method
 which would call the ``_make_tuples`` for every combination of dependent/parent tables. In this case,
-``AverageActivity``'s ``_make_tuples`` will be called for every entry in the ``Neuron`` table. 
+``ActivityStatistics``'s ``_make_tuples`` will be called for every neuron in the ``Neuron`` table. 
 
-Here, for each ``Neuron`` (as pointed to by ``key``), we  1) get the value of column ``activity`` storing
-the neuron's electric activity as NumPy array, 2) compute the mean and store as ``avg_activity`` field
-in the ``key`` dictionary, and 3) insert the dictionary into self (``AverageActivity``).
+Here, for each neuron in the ``Neuron`` table (pointed to by ``key``), we  1) get the value of column 
+``activity`` storing the neuron's electric activity as NumPy array, 2) compute various statistics and
+store the values into the ``key`` dictionary and 3) insert the dictionary into self (``ActivityStatistics``).
 
 .. note::
   ``fetch`` method will always return a list of values even if there is only one element. When you know
   that there is only going to be one entry, you can get the attribute value directly by using
   ``fetch1`` instead, as was done here.
 
-With this computation defined, we can trigger average activity to be computed for all entries in
-``Neuron`` by simply instantiating and calling ``populate`` method on ``AverageActivity``:
+With this computation defined, we can trigger activity statistics to be computed for all entries in
+``Neuron`` by simply instantiating and calling ``populate`` method on ``ActivityStatistics``:
 
 .. code-block:: python
 
-  >>> avg = AverageActivity()
+  >>> avg = ActivityStatistics()
   >>> avg
   *mouse_id    *session_date  avg_activity
   +----------+ +------------+ +------------+
@@ -152,17 +173,21 @@ With this computation defined, we can trigger average activity to be computed fo
   100          2017-06-01     0.352429
    (5 tuples)
 
-Great! We were able to the average activity computed for each neuron with a single method call!
+Great! We just successfully computed various neuronal activity statistics for all neurons in the
+``Neuron`` table with a single method call to ``populate``. Computation couldn't really be 
+easier than that!
 
 Detecting spikes from neural activity
 -------------------------------------
 
-Now let's try performing somewhat more challenging computation and detect spikes from the 
-electric activities of neurons. It turns out that this is a very challenging and exciting topic
-with a lot of research done on it. However, we are going to implement a very simple algorithm
-where we register a "spike" to be where the activity **rises above** a certain **threshold**.
+Now we have a better idea of our neuronal activity data, let's try performing the more challenging
+computation - the spike detection. As you may know, spike detection is a very challenging (and 
+exciting) subject and is a very active area of research!
+However, Rather than attempting to implement the state-of-the-art spike detection,
+we are going to implement a very simple algorithm where we register a "spike" 
+every time the activity **rises above** a certain **threshold** value.
 
-Notice that this means that the result of our computation (i.e. detected spikes) could depend
+Importantly, this means that the result of our computation (i.e. detected spikes) will depend
 a lot on the chosen value of the threshold, and we would like to be able to try a few
 different value of threshold to see what works well. In other words, we would like to be able
 to run the spike detection algorithm with few different values of **threshold** and compare
@@ -201,10 +226,34 @@ table by subclassing ``dj.Lookup``. Lookup table is almost identical to a manual
 Defining ``SpikeDetection`` table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Now that we have defined ``SpikeDetectionParam``, let's go ahead and define the computed table
+Now that we have defined ``SpikeDetectionParam``, let's go ahead and define the computed table for
+spike detection and call it ``SpikeDetection``!
 
+.. code-block:: python
 
+  @schema
+  class SpikeDetection(dj.Computed):
+      definition = """
+      -> Neuron
+      -> SpikeDetectionParam
+      ---
+      spikes: longblob     # detected spikes
+      count: int           # total number of detected spikes
+      """
 
+      def _make_tuples(self, key):
+          activity = (Neuron() & key).fetch1['activity']
+          threshold = (SpikeDetectionParam() & key).fetch1['threshold']
 
+          above_thrs = (activity > threshold).astype(np.int)   # find activity above threshold
+          rising = (np.diff(above_thrs) > 0).astype(np.int)   # find rising edge of crossing threshold
+          spikes = p.hstack((0, rising))    # prepend 0 to account for shortening due to np.diff
+          count = spikes.sum()   # compute total spike counts
 
+          # save results and insert
+          key['spikes'] = spikes
+          key['count'] = count
+          self.insert1(key)
 
+          print('Detected {} spikes for mouse_id {} session_date {} using threshold={:0.2f}'.format(
+                count, key['mouse_id'], key['session_date'], threshold)

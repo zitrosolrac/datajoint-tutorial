@@ -155,7 +155,7 @@ This results in:
 
   7 tuples (0.0273 s)
 
-.. _duplicate-entry:
+.. _matlab-duplicate-entry:
 
 Data integrity
 --------------
