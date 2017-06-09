@@ -1,5 +1,5 @@
-Building Your First Pipeline
-============================
+Building Your First Data Pipeline
+=================================
 
 **Author**: Edgar Y. Walker
 
@@ -49,7 +49,7 @@ As you will see shortly, with DataJoint, it is not only easy but very natural to
 that can include all of the above information. Now choose your language and move on with the tutorial!
 
 Building in Python
-------------------
+==================
 
 Ready to start building your data pipeline in Python? Proceed to :doc:`python/first-table` now!
 
@@ -75,7 +75,7 @@ Ready to start building your data pipeline in Python? Proceed to :doc:`python/fi
 
 
 Building in MATLAB
-------------------
+==================
 
 Ready to start building your data pipeline in MATLAB? Proceed to :doc:`matlab/first-table` now!
 
