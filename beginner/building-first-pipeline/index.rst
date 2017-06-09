@@ -1,4 +1,4 @@
-Building Your First Data Pipeline
+Building your first data pipeline
 =================================
 
 **Author**: Edgar Y. Walker
