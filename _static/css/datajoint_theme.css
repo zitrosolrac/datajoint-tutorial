@@ -30,13 +30,29 @@ h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend, p.capti
     }
 }
 
+/* decrease padding on sidebar logo for BETA logo */
+img.logo {
+    padding: 0px;
+}
+.wy-side-nav-search {
+    padding: 0px;
+}
+.wy-side-nav-search a {
+    padding: 0 0 1px 0;
+}
+
+#rtd-search-form {
+    padding: 1px 8px 0px;
+}
+
+
 /* Mobile */
 .wy-nav-top {
-    background-image: url('../img/djTutorialLogoWhite.svg');
+    background-image: url('../img/djTutorialBETAtop.svg');
     background-color: #343131;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 0;
+    margin-top: 2px;
     color: #333;
 }
 
