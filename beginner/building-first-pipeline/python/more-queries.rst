@@ -210,6 +210,8 @@ just like we did.
 
 We will wrap up this section by covering one more of the basic but very powerful query operator - join ``*``.
 
+.. _python-join:
+
 Join operator ``*``
 -------------------
 When working with multiple tables (as in the case of ``Mouse`` and ``Session``), you would sometimes wish to

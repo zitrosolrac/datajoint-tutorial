@@ -89,7 +89,7 @@ non-primary key attributes ``mean``, ``stdev`` and ``max`` to hold the mean, sta
 and maximum value of the electric activity, respectively.
 
 .. code-block:: python
-  :emphasize-lines: 12-19
+  :emphasize-lines: 11-19
 
   @schema
   class ActivityStatistics(dj.Computed):
@@ -125,6 +125,11 @@ We also print out a message for every completed call to ``_make_tuples``.
   ``fetch`` method will always return a list of values even if there is only one element. When you know
   that there is only going to be one entry, you can get the attribute value directly by using
   ``fetch1`` instead, as was done here.
+
+.. _python-neuron-stats:
+
+Populating neuron statistics
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 With this computation defined, we can trigger activity statistics to be computed for all entries in
 ``Neuron`` by simply instantiating and calling ``populate`` method on ``ActivityStatistics``:
@@ -421,6 +426,171 @@ us to run it! Let's instantiate the ``Spikes`` table and ``populate`` it away!
 Sadly nothing seems to be happening. Why could this be the case? The answer lies in the
 ``SpikeDetectionParam`` table:
 
-.. 
+.. code-block:: python
 
+  >>> SpikeDetectionParam()    # instantiate and view the content
+  *sdp_id    threshold
+  +--------+ +-----------+
 
+   (0 tuples)
+
+Aha! Because ``Spikes`` table performs computation on the every **combination** of ``Neuron``
+and ``SpikeDetectionParam``, when there is no entry in ``SpikeDetectionParam``, there was
+nothing to be populated!
+
+Filling in ``Lookup`` table
++++++++++++++++++++++++++++
+
+Let's fix this but creating an entry in ``SpikeDetectionParam``. Consulting the statistics
+computed for neurons in :ref:`python-neuron-stats`, let's pick a value that is at least 1-2
+standard deviation above the mean value. Let's try 0.9 as our threshold! You would fill
+in values into a ``Lookup`` table just how you would for a ``Manual`` table:
+
+.. code-block:: python
+
+  >>> sdp = SpikeDetectionParam()
+  >>> sdp.insert1({'sdp_id': 0, 'threshold': 0.9})
+
+Here we have assigned the ``threshold`` of 0.9 the ``sdp_id`` of 0.
+
+Running spike detection with multiple parameter values
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Alright, now with ``SpikeDetectionParam`` populated with a parameter, let's try to ``populate``
+the ``Spikes`` table once again:
+
+.. code-block:: python
+
+  >>> spikes.populate()
+  Populating for:  {'mouse_id': 0, 'session_date': datetime.date(2017, 5, 15), 'sdp_id': 0}
+  Detected 27 spikes!
+
+  Populating for:  {'mouse_id': 0, 'session_date': datetime.date(2017, 5, 19), 'sdp_id': 0}
+  Detected 21 spikes!
+
+  Populating for:  {'mouse_id': 5, 'session_date': datetime.date(2017, 1, 5), 'sdp_id': 0}
+  Detected 14 spikes!
+
+  Populating for:  {'mouse_id': 100, 'session_date': datetime.date(2017, 5, 25), 'sdp_id': 0}
+  Detected 35 spikes!
+
+  Populating for:  {'mouse_id': 100, 'session_date': datetime.date(2017, 6, 1), 'sdp_id': 0}
+  Detected 15 spikes!
+
+Woohoo! This time the algorithm ran, reporting us how the detected spike counts!!
+
+Let's now try running this same algorithm but under different parameter configuration - that is
+different values of ``threshold``! Let's try a much smaller ``threshold`` value of say 0.1!
+Go ahead and inser this new parameter value into the ``SpikeDetectionParam`` table:
+
+.. code-block:: python
+
+  >>> sdp.insert1({'sdp_id': 1, 'threshold': 0.1})
+
+...and re-trigger the ``populate``:
+
+.. code-block:: python
+
+  >>> spikes.populate()
+  Populating for:  {'mouse_id': 0, 'session_date': datetime.date(2017, 5, 15), 'sdp_id': 1}
+  Detected 128 spikes!
+
+  Populating for:  {'mouse_id': 0, 'session_date': datetime.date(2017, 5, 19), 'sdp_id': 1}
+  Detected 135 spikes!
+
+  Populating for:  {'mouse_id': 5, 'session_date': datetime.date(2017, 1, 5), 'sdp_id': 1}
+  Detected 132 spikes!
+
+  Populating for:  {'mouse_id': 100, 'session_date': datetime.date(2017, 5, 25), 'sdp_id': 1}
+  Detected 142 spikes!
+
+  Populating for:  {'mouse_id': 100, 'session_date': datetime.date(2017, 6, 1), 'sdp_id': 1}
+  Detected 151 spikes!
+
+Wow, that gave rise to a lot more spikes, most likely because the algorithm is now picking up
+some noise us spikes!
+
+For fun, let's try slightly bigger value - maybe 1.3?
+
+.. code-block:: python
+
+  >>> sdp.insert1({'sdp_id': 2, 'threshold': 1.3})
+  >>> spikes.populate()
+  Populating for:  {'mouse_id': 0, 'session_date': datetime.date(2017, 5, 15), 'sdp_id': 2}
+  Detected 13 spikes!
+
+  Populating for:  {'mouse_id': 0, 'session_date': datetime.date(2017, 5, 19), 'sdp_id': 2}
+  Detected 5 spikes!
+
+  Populating for:  {'mouse_id': 5, 'session_date': datetime.date(2017, 1, 5), 'sdp_id': 2}
+  Detected 1 spikes!
+
+  Populating for:  {'mouse_id': 100, 'session_date': datetime.date(2017, 5, 25), 'sdp_id': 2}
+  Detected 9 spikes!
+
+  Populating for:  {'mouse_id': 100, 'session_date': datetime.date(2017, 6, 1), 'sdp_id': 2}
+  Detected 2 spikes!
+
+and that appears to have been a bit too big for threshold, causing us to lose spikes!
+
+Seeing them all together
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Finally, we can look at all of our hard earned spikes under different threshold values by
+inspecting the ``Spikes`` table:
+
+.. code-block:: python
+
+  >> spikes
+  *mouse_id    *session_date  *sdp_id    count     spikes
+  +----------+ +------------+ +--------+ +-------+ +--------+
+  0            2017-05-15     0          27        <BLOB>
+  0            2017-05-15     1          128       <BLOB>
+  0            2017-05-15     2          13        <BLOB>
+  0            2017-05-19     0          21        <BLOB>
+  0            2017-05-19     1          135       <BLOB>
+  0            2017-05-19     2          5         <BLOB>
+  5            2017-01-05     0          14        <BLOB>
+     ...
+   (15 tuples)
+
+Even better, we can see the values of ``SpikeDetectionParam`` together by :ref:`joining 
+<python-join>` the two tables together:
+
+.. code-block:: python
+
+  >> spikes * sdp
+  *mouse_id    *session_date  *sdp_id    count     threshold     spikes
+  +----------+ +------------+ +--------+ +-------+ +-----------+ +--------+
+  0            2017-05-15     0          27        0.9           <BLOB>
+  0            2017-05-19     0          21        0.9           <BLOB>
+  5            2017-01-05     0          14        0.9           <BLOB>
+  100          2017-05-25     0          35        0.9           <BLOB>
+  100          2017-06-01     0          15        0.9           <BLOB>
+  0            2017-05-15     1          128       0.1           <BLOB>
+  0            2017-05-19     1          135       0.1           <BLOB>
+     ...
+   (15 tuples)
+
+.. note:: python
+  By default preview of the table will show only the first 7 entries in the table. If you
+  want to see more of the table, you can change the ``display.limit`` in ``dj.config``:
+
+  .. code-block:: python
+  
+    >>> dj.config['display.limit'] = 20     # display up to 20 entries in preview
+   
+
+What's next?
+------------
+
+Congratulations!! You have now reached the end of the **Building your first data pipeline**
+tutorial!! You have learned a lot throughout this tutorial, and I hope that you now
+see the strengths of DataJoint in buliding data pipeline! Before moving forward,
+go ahead and spend some more time playing with the simple but effective data pipeline that
+you have built! Try to see if you can improve the algorithm for spike detection or
+even start defining a new computation all togehter!
+
+Furthermore your journey doesn't end here! Although we have covered the major topics of DataJoint, there are still a lot of cool features to be explored! Be sure to checkout our
+`documentation <http://docs.datajoint.io>`_ and stay tuned for upcoming tutorials covering
+advanced topics in DataJoint!
