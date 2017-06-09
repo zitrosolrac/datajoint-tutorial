@@ -24,6 +24,8 @@ step-by-step. In particular, we will cover the following conecepts:
 - Different table types or *tiers*
 - How to insert data into a table manually
 - How to query and fetch data from the tables
+- How to automatically import data into a table from files
+- How to define and automatically populate tables with computation results
 
 Designing data pipelines for your experiments
 ----------------------------------------------
