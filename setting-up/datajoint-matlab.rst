@@ -8,8 +8,10 @@ System requirements
 -------------------
 DataJoint for MATLAB requires **MATLAB R2015b** or later to function properly. Verify that you have the right MATLAB version before proceeding with the tutorial.
 
-Installing DataJoint Toolbox
-----------------------------
+.. _installing-dj-matlab:
+
+Installing the DataJoint Toolbox
+--------------------------------
 
 The entire source code for DataJoint MATLAB is made available at `datajoint/datajoint-matlab <https://github.com/datajoint/datajoint-matlab>`_ GitHub repository. Although you can certainly download and use DataJoint directly from the source code, DataJoint is available as a custom toolbox that you can download from `MATLAB File Exchange <https://www.mathworks.com/matlabcentral/fileexchange/63218-datajoint>`_. Follow these simple instructions to install DataJoint toolbox:
 
@@ -25,6 +27,12 @@ And that's it! To verify that the toolbox was properly installed, run the follow
   >> dj.version
 
 If that prints out the DataJoint version without an error, you are good to go!
+
+Upgrading DataJoint
+^^^^^^^^^^^^^^^^^^^
+If you already have an older version of DataJoint toolbox installed on your system and you wish to upgrade to the latest version, 
+you can simply following the same exact installation step above to download and install the latest available version of DataJoint for MATLAB
+toolbox.
 
 .. _configure-matlab-dj:
 

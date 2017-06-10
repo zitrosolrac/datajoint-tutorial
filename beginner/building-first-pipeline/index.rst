@@ -3,7 +3,8 @@ Building your first data pipeline
 
 **Author**: Edgar Y. Walker
 
-**Updated**: 2017-06-03
+**Updated**: 2017-06-10
+
 
 There is no better way to learn about a tool than to sit down and get your hands dirty using it! In this tutorial, we will learn
 DataJoint by building our very first data pipeline. To explain data pipeline design and 
@@ -14,6 +15,12 @@ to collect and process the data from your experiments. If you are not a neurosci
   This tutorial assumes that you already have installed the DataJoint library for Python or MATLAB and have
   already configured a database server where you can create new database schemas and tables. If you don't
   have either of this, be sure to checkout :doc:`/setting-up/introduction` before moving on!
+
+.. important::
+  This tutorial is frequently updated to reflect the latest DataJoint Python and MATLAB library syntax. Be sure to download and
+  install the latest DataJoint version before following this tutorial! Refer to :ref:`Installing DataJoint for Python <installing-dj-python>`
+  and :ref:`Installing DataJoint for MATLAB <installing-dj-matlab>` for instructions on how to install/upgrade to obtain the latest
+  version of DataJoint library.
 
 What's covered in this tutorial?
 --------------------------------

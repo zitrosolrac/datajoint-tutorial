@@ -16,6 +16,8 @@ right Python version, run the following in the terminal/command prompt:
 If the above command runs without an error and the version is at least `3.4` (e.g.`3.6.0`),
 then you are good to go!
 
+.. _installing-dj-python:
+
 Installing the DataJoint Package
 --------------------------------
 
@@ -27,7 +29,7 @@ by just running the following in the terminal:
 
 .. code-block:: bash
 
-    $ pip3 install --upgrade datajoint
+    $ pip3 install datajoint
 
 
 and that's it! This should trigger the installation of the latest DataJoint and all of its dependencies. 
@@ -41,6 +43,15 @@ Verify that the package was properly installed by starting a Python 3 console, a
   >>> import datajoint as dj
 
 Make sure you have the DataJoint package installed successfully before moving on.
+
+Upgrading DataJoint
+^^^^^^^^^^^^^^^^^^^
+If you already have an older version of DataJoint package installed on your system and you wish to upgrade to the latest version, 
+you can run the above ``pip install datajoint`` command **adding** ``--upgrade`` option. That is:
+
+.. code-block:: bash
+
+  $ pip3 install --upgrade datajoint
 
 .. _configure-python-dj:
 
