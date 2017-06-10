@@ -47,7 +47,7 @@ Make sure you have the DataJoint package installed successfully before moving on
 Upgrading DataJoint
 ^^^^^^^^^^^^^^^^^^^
 If you already have an older version of DataJoint package installed on your system and you wish to upgrade to the latest version, 
-you can run the above ``pip install datajoint`` command **adding** ``--upgrade`` option. That is:
+you can run ``pip install datajoint`` again but this time passing in the ``--upgrade`` option. That is:
 
 .. code-block:: bash
 

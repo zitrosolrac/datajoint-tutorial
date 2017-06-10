@@ -31,7 +31,7 @@ If that prints out the DataJoint version without an error, you are good to go!
 Upgrading DataJoint
 ^^^^^^^^^^^^^^^^^^^
 If you already have an older version of DataJoint toolbox installed on your system and you wish to upgrade to the latest version, 
-you can simply following the same exact installation step above to download and install the latest available version of DataJoint for MATLAB
+you can simply follow the same exact installation steps as above to download and install the latest available version of the DataJoint for MATLAB
 toolbox.
 
 .. _configure-matlab-dj:
