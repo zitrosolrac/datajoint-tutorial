@@ -47,7 +47,7 @@ of electric activity **for each neuron in ``Neuron``** and call it``ActivityStat
       """
 
       def _make_tuples(self, key):
-          activity = (Neuron() & key).fetch1['activity']    # fetch activity as NumPy array
+          activity = (Neuron() & key).fetch1('activity')    # fetch activity as NumPy array
 
           # compute various statistics on activity
           key['mean'] = activity.mean()   # compute mean 
@@ -72,7 +72,7 @@ As usual, let's take a look at it step by step!
       """
 
       def _make_tuples(self, key):
-          activity = (Neuron() & key).fetch1['activity']    # fetch activity as NumPy array
+          activity = (Neuron() & key).fetch1('activity')    # fetch activity as NumPy array
 
           # compute various statistics on activity
           key['mean'] = activity.mean()   # compute mean 
@@ -102,7 +102,7 @@ and maximum value of the electric activity, respectively.
       """
 
       def _make_tuples(self, key):
-          activity = (Neuron() & key).fetch1['activity']    # fetch activity as NumPy array
+          activity = (Neuron() & key).fetch1('activity')    # fetch activity as NumPy array
 
           # compute various statistics on activity
           key['mean'] = activity.mean()   # compute mean 
@@ -244,8 +244,8 @@ spike detection and call it ``Spikes``!
       def _make_tuples(self, key):
           print('Populating for: ', key)
 
-          activity = (Neuron() & key).fetch1['activity']
-          threshold = (SpikeDetectionParam() & key).fetch1['threshold']
+          activity = (Neuron() & key).fetch1('activity')
+          threshold = (SpikeDetectionParam() & key).fetch1('threshold')
 
           above_thrs = (activity > threshold).astype(np.int)   # find activity above threshold
           rising = (np.diff(above_thrs) > 0).astype(np.int)   # find rising edge of crossing threshold
@@ -306,8 +306,8 @@ Now let's move onto the mean of the computed table - ``_make_tuples``:
   def _make_tuples(self, key):
       print('Populating for: ', key)
 
-      activity = (Neuron() & key).fetch1['activity']
-      threshold = (SpikeDetectionParam() & key).fetch1['threshold']
+      activity = (Neuron() & key).fetch1('activity')
+      threshold = (SpikeDetectionParam() & key).fetch1('threshold')
 
       above_thrs = (activity > threshold).astype(np.int)   # find activity above threshold
       rising = (np.diff(above_thrs) > 0).astype(np.int)   # find rising edge of crossing threshold
@@ -334,8 +334,8 @@ the ``SpikeDetectionParam`` table.
   def _make_tuples(self, key):
       print('Populating for: ', key)
 
-      activity = (Neuron() & key).fetch1['activity']
-      threshold = (SpikeDetectionParam() & key).fetch1['threshold']
+      activity = (Neuron() & key).fetch1('activity')
+      threshold = (SpikeDetectionParam() & key).fetch1('threshold')
 
       above_thrs = (activity > threshold).astype(np.int)   # find activity above threshold
       rising = (np.diff(above_thrs) > 0).astype(np.int)   # find rising edge of crossing threshold
@@ -365,8 +365,8 @@ and store the result as our detected ``spikes``!
   def _make_tuples(self, key):
       print('Populating for: ', key)
 
-      activity = (Neuron() & key).fetch1['activity']
-      threshold = (SpikeDetectionParam() & key).fetch1['threshold']
+      activity = (Neuron() & key).fetch1('activity'(
+      threshold = (SpikeDetectionParam() & key).fetch1('threshold')
 
       above_thrs = (activity > threshold).astype(np.int)   # find activity above threshold
       rising = (np.diff(above_thrs) > 0).astype(np.int)   # find rising edge of crossing threshold
@@ -388,8 +388,8 @@ We then compute the total detected spikes and print it out to the screen.
   def _make_tuples(self, key):
       print('Populating for: ', key)
 
-      activity = (Neuron() & key).fetch1['activity']
-      threshold = (SpikeDetectionParam() & key).fetch1['threshold']
+      activity = (Neuron() & key).fetch1('activity')
+      threshold = (SpikeDetectionParam() & key).fetch1('threshold')
 
       above_thrs = (activity > threshold).astype(np.int)   # find activity above threshold
       rising = (np.diff(above_thrs) > 0).astype(np.int)   # find rising edge of crossing threshold

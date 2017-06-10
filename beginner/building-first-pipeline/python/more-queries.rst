@@ -1,4 +1,4 @@
-Queries with Multiple Tables
+Queries with multiple tables
 ============================
 
 Now that we have more than one table in our data pipeline, you can perform more exciting queries!
