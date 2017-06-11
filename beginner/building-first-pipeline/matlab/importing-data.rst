@@ -190,8 +190,7 @@ back to our class definition and add a very basic ``_make_tuples`` method:
 
 Here we have added a very basic ``_make_tuples`` method to the class ``Neuron`` (this is always a protected method of the class). It turns out
 that ``_make_tuples`` takes in a single argument ``key``, so we go ahead and let ``_make_tuples``
-print out the content of the ``key`` argument. Let's now create a new instance and call ``populate``
-again:
+print out the content of the ``key`` argument. Let's now create a new instance and call ``populate`` again:
 
 .. code-block:: matlab
 
@@ -254,7 +253,8 @@ and therefore the ``populate`` method went through all entries of ``Session`` an
 for each entry in ``Session``, passing in the primary key values as the ``key`` argument!
 
 So what is this all good for? We can use the fact that ``populate`` calls ``_make_tuples`` for
-every combination of parent tables for ``Neuron`` to automatically visit all ``Session``s and load
+every combination of parent tables for ``Neuron`` to automatically visit all ``Session``\ s 
+and load
 the neuron data for each session and insert the loaded data into the table. Let's take a look
 at what that implementation might be like.
 
