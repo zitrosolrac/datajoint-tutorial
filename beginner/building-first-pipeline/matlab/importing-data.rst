@@ -254,7 +254,7 @@ and therefore the ``populate`` method went through all entries of ``Session`` an
 for each entry in ``Session``, passing in the primary key values as the ``key`` argument!
 
 So what is this all good for? We can use the fact that ``populate`` calls ``makeTuples`` for
-every combination of parent tables for ``Neuron`` to automatically visit all ``Session``s and load
+every combination of parent tables for ``Neuron`` to automatically visit all ``Session``\ s  and load
 the neuron data for each session and insert the loaded data into the table. Let's take a look
 at what that implementation might be like.
 

@@ -49,11 +49,12 @@ Alternatively, you can retrieve the data as a list of dictionaries:
 Fetching specific attributes
 ----------------------------
 If you are only interested in values from a specific attribute (columns) of the table,
-you can do so by using ``[]`` notation. Let's try fetching only the date of birth of all mice.
+you can do so by passing in the name of the attribute(s) into the ``fetch`` method.
+Let's try fetching only the date of birth of all mice.
 
 .. code-block:: python
 
-  >>> mouse.fetch['dob']
+  >>> mouse.fetch('dob')
   array([datetime.date(2017, 3, 1), datetime.date(2016, 11, 19),
          datetime.date(2016, 11, 20), datetime.date(2016, 12, 25),
          datetime.date(2017, 1, 1), datetime.date(2017, 1, 3),
@@ -63,7 +64,7 @@ This can also be used to fetch multiple attributes separately:
 
 .. code-block:: python
 
-  >>> sex, ids = mouse.fetch['sex', 'mouse_id']
+  >>> sex, ids = mouse.fetch('sex', 'mouse_id')
   >>> sex
   array(['M', 'M', 'U', 'F', 'F', 'F', 'F'], dtype=object)
   >>> dob

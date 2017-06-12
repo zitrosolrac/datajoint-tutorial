@@ -30,7 +30,6 @@ http://docs.datajoint.io.
    :maxdepth: 2
    :hidden:
    :includehidden:
-   :caption: Tutorials
-   :name: beginner/index
+   :caption: First Steps
 
    beginner/building-first-pipeline/index
