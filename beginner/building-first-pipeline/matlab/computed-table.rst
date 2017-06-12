@@ -172,6 +172,7 @@ With this computation defined, we can trigger activity statistics to be computed
   Computed statistics for for 100 experiment on 2017-06-01
 
 .. code-block:: matlab
+
   >> avg
 
   avg = 
@@ -601,7 +602,9 @@ inspecting the ``Spikes`` table:
 Even better, we can see the values of ``SpikeDetectionParam`` together by :ref:`joining 
 <matlab-join>` the two tables together:
 
-.. code-block:: matlab>> spikes * sdp
+.. code-block:: matlab
+
+  >> spikes * sdp
 
   ans = 
 
