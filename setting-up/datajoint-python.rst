@@ -114,7 +114,8 @@ Once connected, you can easily change your password using ``dj.set_password()``
 .. code-block:: python
 
   >>> dj.set_password()
-  Password: (enter your new password)
+  New Password: (enter your new password)
+  Confirm Password: (enter your new password again)
   Password updated.
 
 and that's it!
