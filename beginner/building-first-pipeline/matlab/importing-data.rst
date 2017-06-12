@@ -488,4 +488,3 @@ Congratulations for completing this section! This was a lot of material but hope
 the simple logic of ``populate`` and ``makeTuples`` can make a data importing task very
 streamlined and automated! In :doc:`the next and the last section <computed-table>` of this tutorial,
 we are going to explore ``computed`` tables that computes something from data in a parent table and stores the results in the data pipeline!
-
