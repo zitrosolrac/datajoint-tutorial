@@ -106,6 +106,25 @@ If you get a message that looks like this, then congratulations! You have just s
   The exact message will look different depending on what database server you are
   connected to.
 
+Changing password
+^^^^^^^^^^^^^^^^^
+
+Once connected, you can easily change your password using ``dj.set_password()``
+
+.. code-block:: python
+
+  >>> dj.set_password()
+  Password: (enter your new password)
+  Password updated.
+
+and that's it!
+
+.. note::
+  If you have signed up to and are connected to the tutorial database on 
+  `DataJoint.io <https://datajoint.io>`_, it is strongly recommeded that you 
+  change your password from the temporary password that was sent to you in 
+  the email!
+
 What's next?
 ------------
 
