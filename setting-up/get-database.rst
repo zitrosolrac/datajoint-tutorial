@@ -25,7 +25,7 @@ Signing up for a free tutorial database server
 2. Fill out your email and association.
 3. Select "Yes" to the question "Interested in signing up for database?"
 4. Choose and enter a username. If available, this will be your database username.
-5. Hit submit. You request will be reviewed and you will receive an email with database connection 
+5. Hit submit. Your request will be reviewed and you will receive an email with database connection 
    information typically within 48 hours.
 
 And that's it! 
