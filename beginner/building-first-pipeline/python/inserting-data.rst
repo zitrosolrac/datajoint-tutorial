@@ -137,7 +137,7 @@ in the table.
 
 .. code-block:: python
 
-  >>> mouse.insert((0, '2015-03-03', 'U'))  # mouse with ---------------------------------------------------------------------------
+  >>> mouse.insert1((0, '2015-03-03', 'U'))  # mouse with ---------------------------------------------------------------------------
   IntegrityError                            Traceback (most recent call last)
   <ipython-input-44-ce3dd3a7f75c> in <module>()
   ----> 1 mouse.insert1((0, '2015-03-03', 'U'))

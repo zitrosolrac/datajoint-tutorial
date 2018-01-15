@@ -70,6 +70,7 @@ Now we will use the ``schema`` object to create a new table. In our hypothetical
   @schema
   class Mouse(dj.Manual):
         definition = """
+        # mouse
         mouse_id: int                  # unique mouse id
         ---
         dob: date                      # mouse date of birth
