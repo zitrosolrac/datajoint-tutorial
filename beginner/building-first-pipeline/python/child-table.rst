@@ -29,16 +29,16 @@ a look at how ``Session`` table may be defined:
 .. code-block:: python
    :emphasize-lines: 5
 
-    @schema
-    class Session(dj.Manual):
-        definition = """
-        # experiment session
-        -> Mouse
-        session_date: date            # session date
-        ---
-        experiment_setup: int         # experiment setup ID
-        experimenter: varchar(128)    # name of the experimenter
-        """
+   @schema
+   class Session(dj.Manual):
+       definition = """
+       # experiment session
+       -> Mouse
+       session_date: date            # session date
+       ---
+       experiment_setup: int         # experiment setup ID
+       experimenter: varchar(128)    # name of the experimenter
+       """
 
 
 The definition of the ``Session`` table looks very similar to that of ``Mouse`` except for one notable
