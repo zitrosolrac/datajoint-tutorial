@@ -30,7 +30,7 @@ Set up your connection to the database server.
 
   dj.config['database.host'] = 'HOST_ADDRESS'
   dj.config['database.user'] = 'USER_NAME'
-  dj.config['databas.password'] = 'PASSWORD'
+  dj.config['database.password'] = 'PASSWORD'
 
 
 .. note::
