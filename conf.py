@@ -38,7 +38,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'DataJoint Tutorials'
-copyright = '2017, Vathes LLC'
+copyright = '2017-2020, Vathes LLC'
 author = 'DataJoint contributors'
 
 # The version info for the project you're documenting, acts as replacement for
