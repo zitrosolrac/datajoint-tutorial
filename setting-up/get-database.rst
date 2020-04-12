@@ -2,7 +2,7 @@ Getting connected to a database
 ===============================
 
 In this section we will explore various options on how we can get connected to a database server
-for use throughout the tutorial and beyond. We will review three major options, from the easiet (and 
+for use throughout the tutorial and beyond. We will review three major options, from the easiest (and 
 most recommended) to the more involved but highly customizable.
 
 Connect to DataJoint.io_ (Recommended)
@@ -10,33 +10,38 @@ Connect to DataJoint.io_ (Recommended)
 
 .. _DataJoint.io: https://datajoint.io
 
-If you want to get started trying out DataJoint as quickly as possible with minimal setup, we are
-happy to offer a free tutorial database server via `DataJoint.io <https://datajoint.io>`_.
+If you want to get started trying out DataJoint as quickly as possible with minimal setup, sign up for 
+`DataJoint.io <https://datajoint.io>`_ account to gain access to the free tutorial database server in addition 
+to ready-to-play interactive Python playground environment based on Jupyter. 
 
 
-Follow these simple instructions to sign up and receive a username and password to the tutorial database
-server hosted by DataJoint.io.
+Follow these simple instructions to sign up for DataJoint.io account with the access to the tutorial database.
 
-
-Signing up for a free tutorial database server
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Signing up to DataJoint.io account
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Visit https://datajoint.io and click on the Sign Up button. 
-2. Fill out your email and association.
-3. Select "Yes" to the question "Interested in signing up for database?"
-4. Choose and enter a username. If available, this will be your database username.
-5. Hit submit. Your request will be reviewed and you will receive an email with database connection 
-   information typically within 48 hours.
+2. Follow the instructions to complete the signup. You will receive an email as part of the signup process.
+3. Make note of your DataJoint.io username and password. This will be the username and password for the tutorial database.
 
 And that's it! 
 
+.. warning:: 
+   The tutorial database is provided for learning purpose only and may be periodically cleared to maintain availability
+   for all DataJoint learners. Please **DO NOT** store any important data or information in the database!
+   If you're ready to move on to a persistent database server, refer to the section below_ for setting up your own database server 
+   or seek for-charge hosting services offered by, for example, `DataJoint NEURO <https://datajointneuro.io>`_.
+
+
 .. note::
-  When you create a new schema, your schema must start with ``username_`` substituting in your username. For
-  an example, if you sign up with user name ``johndoe``, your schema name must start with ``johndoe_`` for you to have
+  When you create a new schema, your schema must start with ``username_`` substituting in your DataJoint.io username. For
+  an example, if you sign up with username ``johndoe``, your schema name must start with ``johndoe_`` for you to have
   full control over tables defined in the schema. More details on this will be covered in the next section.
 
-DataJoint.io_ also offers a general database hosting service to host entire data pipelines for yourself, your lab, or large multi-lab collaborations. If
-you are interested in finding out more, be sure to visit us at https://datajoint.io!
+If you are interested in general database hosting service to host entire data pipelines for yourself, your lab, or large 
+multi-lab collaborations, visit https://datajointneuro.io for more information.
+
+.. _below:
 
 Setting up a local database server (Intermediate)
 -------------------------------------------------
