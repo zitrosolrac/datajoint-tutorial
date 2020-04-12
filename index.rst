@@ -4,8 +4,21 @@ Welcome to DataJoint Tutorials!
 Here you will find a collection of tutorials to guide you through the exploration
 of the world DataJoint! 
 
-If you have never used DataJoint before, start by visiting :doc:`/setting-up/introduction`
-to setup a DataJoint development environment suitable for following all tutorials!
+You can now follow through the tutorial by using interactive DataJoint Playground! 
+DataJoint Playground offers JupyterHub based interactive Python environment, complete with
+all scientific libraries suitable for tutorials and experimenting with DataJoint with no setup required.
+Visit and sign up at https://datajoint.io
+
+.. raw:: html
+
+   <div class="index-datajointio-button">
+      <a href="https://datajoint.io" target="_blank">
+         <img src="./_static/img/datajointIOfull.svg">
+      </a>
+   </div>
+
+If you prefer to use a local environment, start by following :doc:`/setting-up/introduction`
+to setup a DataJoint development environment suitable for following all tutorials.
 
 Once you have a working environment, step through :doc:`/beginner/building-first-pipeline/index` to get your hands
 dirty creating your very first data pipeline!

@@ -6,6 +6,23 @@ h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend, p.capti
     font-family: "Catamaran", "Helvetica Neue", Arial, sans-serif;
 }
 
+.index-datajointio-button {
+    width: 150px; 
+    border: 1px solid #c9caca; 
+    border-radius: 8px; 
+    padding: 10px; 
+    background-color: #edf1f1;
+    cursor: pointer;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.index-datajointio-button:hover {
+    border: 1px solid #a5a5a5;
+    background-color: #a6e9e9;
+    box-shadow: 1px 1.5px 4px #a5a5a5;
+}
+
 /* Side background - dark grey*/
 .wy-side-nav-search {
     background-color: #343131;
