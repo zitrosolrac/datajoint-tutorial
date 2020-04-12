@@ -4,8 +4,8 @@ Welcome to DataJoint Tutorials!
 Here you will find a collection of tutorials to guide you through the exploration
 of the world DataJoint! 
 
-You can now follow through the tutorial by using interactive DataJoint Playground! 
-DataJoint Playground offers JupyterHub based interactive Python environment, complete with
+You can now follow through the tutorial by using interactive `DataJoint Playground <https://playground.datajoint.io/>`_! 
+DataJoint Playground offers Jupyter based interactive Python environment, complete with
 all scientific libraries suitable for tutorials and experimenting with DataJoint with no setup required.
 Visit and sign up at https://datajoint.io
 

@@ -12,7 +12,7 @@ Connect to DataJoint.io_ (Recommended)
 
 If you want to get started trying out DataJoint as quickly as possible with minimal setup, sign up for 
 `DataJoint.io <https://datajoint.io>`_ account to gain access to the free tutorial database server in addition 
-to ready-to-play interactive Python playground environment based on JupyterHub. 
+to ready-to-play interactive Python playground environment based on Jupyter. 
 
 
 Follow these simple instructions to sign up for DataJoint.io account with the access to the tutorial database.
