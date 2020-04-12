@@ -246,11 +246,11 @@ you can delete entries by calling the ``delete`` method:
 
 Either hit enter without typing anything or type in "no" to cancel the deletion. If you can only
 delete all entries, then this would not be too useful. Fortunately, you can delete restricted
-table. For example, if I want to specifically delete mouse with ID of 0:
+table. For example, if I want to specifically delete mouse with ID of 10:
 
 .. code-block:: python
  
-  >>> (mouse & 'mouse_id = 0').delete()
+  >>> (mouse & 'mouse_id = 10').delete()
   The contents of the following tables are about to be deleted:
   dj_tutorial`.`mouse` (1 tuples)
   Proceed? [yes, No]: no
