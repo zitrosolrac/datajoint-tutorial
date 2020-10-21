@@ -218,7 +218,7 @@ the neuron data for each session and insert the loaded data into the table. Let'
 at what that implementation might be like.
 
 Implementing ``make``
------------------------------
+---------------------
 Recall that we wanted to load the neuron activity data from each recorded ``Session`` into the
 ``Neuron`` table. We can now achieve that by implementing a ``make`` method like the following.
 
