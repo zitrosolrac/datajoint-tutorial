@@ -24,7 +24,7 @@ A **computed table** is created by subclassing ``dj.Computed`` and
 2) stores the results of this computation.
 
 Just like the imported tables (``dj.Imported``), computed tables (``dj.Computed``) provide the
-``populate`` method and ``_make_tuples`` method, and therefore provides us with a mechanism to
+``populate`` method and ``make`` method, and therefore provides us with a mechanism to
 perform computation on every combination of parent/depended tables!
 
 Computing neuron activity statistics
@@ -46,7 +46,7 @@ of electric activity **for each neuron in ``Neuron``** and call it``ActivityStat
       max: float     # maximum activity
       """
 
-      def _make_tuples(self, key):
+      def make(self, key):
           activity = (Neuron() & key).fetch1('activity')    # fetch activity as NumPy array
 
           # compute various statistics on activity
@@ -71,7 +71,7 @@ As usual, let's take a look at it step by step!
       max: float     # maximum activity
       """
 
-      def _make_tuples(self, key):
+      def make(self, key):
           activity = (Neuron() & key).fetch1('activity')    # fetch activity as NumPy array
 
           # compute various statistics on activity
@@ -101,7 +101,7 @@ and maximum value of the electric activity, respectively.
       max: float     # maximum activity
       """
 
-      def _make_tuples(self, key):
+      def make(self, key):
           activity = (Neuron() & key).fetch1('activity')    # fetch activity as NumPy array
 
           # compute various statistics on activity
@@ -112,14 +112,14 @@ and maximum value of the electric activity, respectively.
           print('Computed statistics for mouse_id {mouse_id} session_date {session_date}'.format(**key))
 
 As mentioned earlier, computed tables are equipped with ``populate`` method which would call 
-the ``_make_tuples`` for every combination of dependent/parent tables. In this case, 
-``ActivityStatistics``'s ``_make_tuples`` will be called for every neuron in the 
+the ``make`` for every combination of dependent/parent tables. In this case, 
+``ActivityStatistics``'s ``make`` will be called for every neuron in the 
 ``Neuron`` table.
 
 Here, for each neuron in the ``Neuron`` table (pointed to by ``key``), we  1) get the value of column 
 ``activity`` storing the neuron's electric activity as NumPy array, 2) compute various statistics and
 store the values into the ``key`` dictionary and 3) insert the dictionary into self (``ActivityStatistics``).
-We also print out a message for every completed call to ``_make_tuples``.
+We also print out a message for every completed call to ``make``.
 
 .. note::
   ``fetch`` method will always return a list of values even if there is only one element. When you know
@@ -241,7 +241,7 @@ spike detection and call it ``Spikes``!
       count: int           # total number of detected spikes
       """
 
-      def _make_tuples(self, key):
+      def make(self, key):
           print('Populating for: ', key)
 
           activity = (Neuron() & key).fetch1('activity')
@@ -298,12 +298,12 @@ As the non-primary-key attributes, ``Spikes`` will contain both the detected ``s
 as an array of 0's and 1's with 1's at the position of a spike, and the total ``count`` 
 of detected spikes.
 
-Now let's move onto the mean of the computed table - ``_make_tuples``:
+Now let's move onto the mean of the computed table - ``make``:
 
 .. code-block:: python
   :emphasize-lines: 4-5
 
-  def _make_tuples(self, key):
+  def make(self, key):
       print('Populating for: ', key)
 
       activity = (Neuron() & key).fetch1('activity')
@@ -321,8 +321,8 @@ Now let's move onto the mean of the computed table - ``_make_tuples``:
       key['count'] = count
       self.insert1(key)
 
-One of the first thing we do in ``_make_tuples`` is to fetch relevant data from other tables.
-This is a very standard practice when defining ``_make_tuples`` in computed tables, as was
+One of the first thing we do in ``make`` is to fetch relevant data from other tables.
+This is a very standard practice when defining ``make`` in computed tables, as was
 also performed in the ``ActivityStatistics`` table. Here we fetch the neuron's electric
 ``activity`` NumPy array from the ``Neuron`` table, and the value of the ``threshold`` from
 the ``SpikeDetectionParam`` table.
@@ -331,7 +331,7 @@ the ``SpikeDetectionParam`` table.
 .. code-block:: python
   :emphasize-lines: 7-9
 
-  def _make_tuples(self, key):
+  def make(self, key):
       print('Populating for: ', key)
 
       activity = (Neuron() & key).fetch1('activity')
@@ -362,7 +362,7 @@ and store the result as our detected ``spikes``!
 .. code-block:: python
   :emphasize-lines: 12
 
-  def _make_tuples(self, key):
+  def make(self, key):
       print('Populating for: ', key)
 
       activity = (Neuron() & key).fetch1('activity'(
@@ -385,7 +385,7 @@ We then compute the total detected spikes and print it out to the screen.
 .. code-block:: python
   :emphasize-lines: 15-17
 
-  def _make_tuples(self, key):
+  def make(self, key):
       print('Populating for: ', key)
 
       activity = (Neuron() & key).fetch1('activity')

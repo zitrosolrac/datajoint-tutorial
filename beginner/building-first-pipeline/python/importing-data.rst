@@ -154,11 +154,11 @@ method on it.
 
   (...message truncated...)
 
-  NotImplementedError: Subclasses of AutoPopulate must implement the method "_make_tuples"
+  NotImplementedError: Subclasses of AutoPopulate must implement the method "make"
 
 Notice how calling the ``populate`` method triggered a ``NotImplementedError`` compaining that
-the method ``_make_tuples`` is not defined. To get a better sense of what's going on, let's go
-back to our class definition and add a very basic ``_make_tuples`` method:
+the method ``make`` is not defined. To get a better sense of what's going on, let's go
+back to our class definition and add a very basic ``make`` method:
 
 .. code-block:: python
   :emphasize-lines: 9,10
@@ -171,11 +171,11 @@ back to our class definition and add a very basic ``_make_tuples`` method:
       activity:  longblob    # electric activity of the neuron
       """
 
-      def _make_tuples(self, key):    # _make_tuples takes a single argument `key`
+      def make(self, key):    # make takes a single argument `key`
           print(key)  # let's look a the key content
 
-Here we have added a very basic ``_make_tuples`` method to the class ``Neuron``. It turns out
-that ``_make_tuples`` takes in a single argument ``key``, so we go ahead and let ``_make_tuples``
+Here we have added a very basic ``make`` method to the class ``Neuron``. It turns out
+that ``make`` takes in a single argument ``key``, so we go ahead and let ``make``
 print out the content of the ``key`` argument. Let's now create a new instance and call ``populate``
 again:
 
@@ -206,21 +206,21 @@ Staring at these four dictionaries, you might have noticed that these are the pr
 So what's going on here? When you call the ``populate`` method of a table, this triggers DataJoint to
 lookup all the tables that the target table depends on (i.e. ``Session`` table for ``Neuron``),
 and for each possible combination of entries in the dependent (or parent) tables, ``populate``
-extracts the primary key values and calls the ``_make_tuples`` method.
+extracts the primary key values and calls the ``make`` method.
 
 In the case of the ``Neuron`` table, the ``Neuron`` table depends only on ``Session`` table,
-and therefore the ``populate`` method went through all entries of ``Session`` and called the ``_make_tuples``
+and therefore the ``populate`` method went through all entries of ``Session`` and called the ``make``
 for each entry in ``Session``, passing in the primary key values as the key`` argument!
 
-So what is this all good for? We can use the fact that ``populate`` calls ``_make_tuples`` for
+So what is this all good for? We can use the fact that ``populate`` calls ``make`` for
 every combination of parent tables for ``Neuron`` to automatically visit all ``Session``\ s and load
 the neuron data for each session and insert the loaded data into the table. Let's take a look
 at what that implementation might be like.
 
-Implementing ``_make_tuples``
------------------------------
+Implementing ``make``
+---------------------
 Recall that we wanted to load the neuron activity data from each recorded ``Session`` into the
-``Neuron`` table. We can now achieve that by implementing a ``_make_tuples`` method like the following.
+``Neuron`` table. We can now achieve that by implementing a ``make`` method like the following.
 
 .. code-block:: python
 
@@ -232,7 +232,7 @@ Recall that we wanted to load the neuron activity data from each recorded ``Sess
       activity:  longblob    # electric activity of the neuron
       """
 
-      def _make_tuples(self, key):
+      def make(self, key):
          # use key dictionary to determine the data file path
          data_file = "/path/to/data/data_{mouse_id}_{session_date}.npy".format(**key)
 
@@ -247,12 +247,12 @@ Recall that we wanted to load the neuron activity data from each recorded ``Sess
 
          print('Populated a neuron for {mouse_id} on {session_date}'.format(**key))
 
-Let's now take a look a the content of ``_make_tuples`` one step at a time.
+Let's now take a look a the content of ``make`` one step at a time.
 
 .. code-block:: python
    :emphasize-lines: 2,3
 
-      def _make_tuples(self, key):
+      def make(self, key):
          # use key dictionary to determine the data file path
          data_file = "/path/to/data/data_{mouse_id}_{session_date}.npy".format(**key)
 
@@ -279,7 +279,7 @@ and substitute in the specific session's values to get the file name.
 .. code-block:: python
    :emphasize-lines: 5,6
 
-      def _make_tuples(self, key):
+      def make(self, key):
          # use key dictionary to determine the data file path
          data_file = "/path/to/data/data_{mouse_id}_{session_date}.npy".format(**key)
 
@@ -301,7 +301,7 @@ recorded neuron's activity from that session.
 .. code-block:: python
    :emphasize-lines: 8,9
 
-      def _make_tuples(self, key):
+      def make(self, key):
          # use key dictionary to determine the data file path
          data_file = "/path/to/data/data_{mouse_id}_{session_date}.npy".format(**key)
 
@@ -327,7 +327,7 @@ value of the ``activity`` holding the recorded activity for that neuron.
 .. code-block:: python
    :emphasize-lines: 11,12
 
-      def _make_tuples(self, key):
+      def make(self, key):
          # use key dictionary to determine the data file path
          data_file = "/path/to/data/data_{mouse_id}_{session_date}.npy".format(**key)
 
@@ -343,14 +343,14 @@ value of the ``activity`` holding the recorded activity for that neuron.
          print('Populated a neuron for {mouse_id} on {session_date}'.format(**key))
 
 We then finally insert this dictionary containing a single neuron's activity into ``self``, which
-of course points to ``Neuron``! With this implementation of ``_make_tuples``, when the ``populate``
+of course points to ``Neuron``! With this implementation of ``make``, when the ``populate``
 method is called, ``Neuron`` will be **populated** with recorded neuron's activity from each 
 recording session, one a time as desired.
 
 Populating ``Neuron`` table
 ---------------------------
 
-Go ahead and redefine the ``Neuron`` class with the updated ``_make_tuples`` method as given
+Go ahead and redefine the ``Neuron`` class with the updated ``make`` method as given
 above. And now let's call the ``populate`` method on a new instance of ``Neuron`` again!
 
 .. code-block:: python
@@ -383,7 +383,7 @@ Multiple calls to populate
 --------------------------
 
 One very cool feature about ``populate`` is the fact it is **smart** and knows exactly
-what still needs to be populated and will only call ``_make_tuples`` for the missing keys. For example,
+what still needs to be populated and will only call ``make`` for the missing keys. For example,
 let's see what happens if we call ``populate`` on ``Neuron`` table again:
 
 .. code-block:: python
@@ -416,16 +416,16 @@ into your ``data`` directory, call ``populate`` again on ``Neuron``.
   Populated a neuron for 100 on 2017-06-01
 
 As you can see, the ``populate`` call automatically detected that there is one new entry (key) available
-to be populated and called ``_make_tuples`` on that missing key.
+to be populated and called ``make`` on that missing key.
 
-By encompassing the logic of importing data for a single primary key in ``_make_tuples`` you can now
+By encompassing the logic of importing data for a single primary key in ``make`` you can now
 easily import data from data files into the ``Imported`` table automatically as the data becomes
 available.
 
 What's next?
 ------------
 Congratulations for completing this section! This was a lot of material but hopefully you saw how
-the simple logic of ``populate`` and ``_make_tuples`` can make a data importing task very
+the simple logic of ``populate`` and ``make`` can make a data importing task very
 streamlined and automated! In :doc:`the next and the last section <computed-table>` of this tutorial,
 we are going to explore ``computed`` tables that computes something from data in a parent table and stores the results in the data pipeline!
 
