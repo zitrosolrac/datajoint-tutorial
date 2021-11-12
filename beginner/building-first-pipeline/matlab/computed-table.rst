@@ -602,11 +602,12 @@ inspecting the ``Spikes`` table:
   15 tuples (0.0409 s)
 
 Even better, we can see the values of ``SpikeDetectionParam`` together by :ref:`joining 
-<matlab-join>` the two tables together:
+<matlab-join>` the two tables together. We can also add the same filtering we previously
+learned, by specifying a date:
 
 .. code-block:: matlab
 
-  >> spikes * sdp
+  >> spikes * sdp & 'session_date = "2017-05-15"'
 
   ans = 
 
@@ -617,21 +618,12 @@ Even better, we can see the values of ``SpikeDetectionParam`` together by :ref:`
     ________    ____________    ______    _____    _________    ________
 
       0         '2017-05-15'    0          27      0.9          '=BLOB='
-      0         '2017-05-19'    0          21      0.9          '=BLOB='
-      5         '2017-01-05'    0          14      0.9          '=BLOB='
-    100         '2017-05-25'    0          35      0.9          '=BLOB='
-    100         '2017-06-01'    0          15      0.9          '=BLOB='
       0         '2017-05-15'    1         128      0.1          '=BLOB='
-      0         '2017-05-19'    1         135      0.1          '=BLOB='
-      5         '2017-01-05'    1         132      0.1          '=BLOB='
-    100         '2017-05-25'    1         142      0.1          '=BLOB='
-    100         '2017-06-01'    1         151      0.1          '=BLOB='
-      0         '2017-05-15'    2          13      1.3          '=BLOB='
-      0         '2017-05-19'    2           5      1.3          '=BLOB='
-
+      0         '2017-05-15'    1          13      1.3          '=BLOB='
+    
           ...
 
-  15 tuples (0.0533 s)
+  3 tuples (0.00604 s)
 
   
 
