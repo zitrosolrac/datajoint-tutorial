@@ -354,10 +354,12 @@ above the threshold. This returns an array of 0's and 1's where 1's corresponds 
 where neuron's activity was above the threshold, storing this as ``above_thrs``.
 
 We then find out all the timebins at which the activity goes from 0 to 1, signifying times
-at which the neuron's activity **raised above the threshold**, storing this into ``rising``! 
+at which the neuron's activity **raised above the threshold**, storing this into ``rising``!
+Numpy's `diff() <https://numpy.org/doc/stable/reference/generated/numpy.diff.html>`_ helps by
+taking the difference between each value and subsequent value.
 We then adjust this array so that it has the same length as the original ``activity``,
-and store the result as our detected ``spikes``!
-
+and store the result as our detected ``spikes``, by prepending a 0 with 
+`hstack() <https://numpy.org/doc/stable/reference/generated/numpy.hstack.html>`_.
 
 .. code-block:: python
   :emphasize-lines: 12
