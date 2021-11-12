@@ -557,22 +557,18 @@ inspecting the ``Spikes`` table:
    (15 tuples)
 
 Even better, we can see the values of ``SpikeDetectionParam`` together by :ref:`joining 
-<python-join>` the two tables together:
+<python-join>` the two tables together. We can also add the same filtering we previously
+learned, by specifying a date:
 
 .. code-block:: python
 
-  >> spikes * sdp
+  >> spikes * sdp & 'session_date = "2017-05-15"'
   *mouse_id    *session_date  *sdp_id    count     threshold     spikes
   +----------+ +------------+ +--------+ +-------+ +-----------+ +--------+
   0            2017-05-15     0          27        0.9           <BLOB>
-  0            2017-05-19     0          21        0.9           <BLOB>
-  5            2017-01-05     0          14        0.9           <BLOB>
-  100          2017-05-25     0          35        0.9           <BLOB>
-  100          2017-06-01     0          15        0.9           <BLOB>
   0            2017-05-15     1          128       0.1           <BLOB>
-  0            2017-05-19     1          135       0.1           <BLOB>
-     ...
-   (15 tuples)
+  0            2017-05-15     2          13        1.3           <BLOB>
+   (3 tuples)
 
 .. note:: python
   By default preview of the table will show only the first 7 entries in the table. If you
