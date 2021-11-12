@@ -385,10 +385,12 @@ above the threshold. This returns an array of 0's and 1's where 1's corresponds 
 where neuron's activity was above the threshold, storing this as ``above_thrs``.
 
 We then find out all the timebins at which the activity goes from 0 to 1, signifying times
-at which the neuron's activity **raised above the threshold**, storing this into ``rising``! 
-We then adjust this array so that it has the same length as the original ``activity``,
-and store the result as our detected ``spikes``! We store the computed ``spikes`` and ``count`` by inserting into this (``Spieks``)
-table!!
+at which the neuron's activity **raised above the threshold**, storing this into ``rising``!
+MATLAB's built-in `diff() <https://www.mathworks.com/help/matlab/ref/diff.html>`_ function
+gives us the difference between adjacent values, which is an array one-item shorter that the input.
+We adjust this array so that it has the same length as the original ``activity``,
+and store the result as our detected ``spikes``! We store the computed ``spikes`` and ``count`` 
+by inserting into this (``Spikes``) table!!
 
 .. code-block:: matlab
   :emphasize-lines: 10-13
