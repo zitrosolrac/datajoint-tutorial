@@ -38,6 +38,10 @@ Depending on how your Python environment is configured, you may have to prefix `
 Verify that the package was properly installed by starting a Python 3 console, and try importing the 
 `datajoint` package:
 
+.. code-block:: bash
+
+    $ python3
+    
 .. code-block:: python
 
   >>> import datajoint as dj
@@ -122,7 +126,7 @@ and that's it!
 
 .. note::
   If you have signed up to and are connected to the tutorial database on 
-  `DataJoint.io <https://datajoint.io>`_, it is strongly recommeded that you 
+  `Accounts.DataJoint.io <https://accounts.datajoint.io/login>`_, it is strongly recommeded that you 
   change your password from the temporary password that was sent to you in 
   the email!
 
