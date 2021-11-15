@@ -40,7 +40,7 @@ Depending on how your Python environment is configured, you may want to install 
 
     $ pip install virtualenv
     $ virtualenv venv/ && source venv/bin/activate
-    $ (venv) pip3 install --user datajoint
+    $ (venv) pip3 install datajoint
     $ # Later:
     $ deactivate # to exit from venv
 
