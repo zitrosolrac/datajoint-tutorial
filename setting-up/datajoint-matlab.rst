@@ -44,7 +44,7 @@ Whichever option you have selected from :doc:`get-database`, you will need three
 to the database server: the database address, username and password.
 
 .. note::
-  If you have signed up for a tutorial database at `DataJoint.io <https://datajoint.io>`_ you should have received
+  If you have signed up for a tutorial database at `Accounts.DataJoint.io <https://accounts.datajoint.io/login>`_ you should have received
   an email with instructions on how to connect to the database, including the host address, username, and your
   temporary password.
 

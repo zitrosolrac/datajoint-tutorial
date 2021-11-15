@@ -354,10 +354,12 @@ above the threshold. This returns an array of 0's and 1's where 1's corresponds 
 where neuron's activity was above the threshold, storing this as ``above_thrs``.
 
 We then find out all the timebins at which the activity goes from 0 to 1, signifying times
-at which the neuron's activity **raised above the threshold**, storing this into ``rising``! 
+at which the neuron's activity **raised above the threshold**, storing this into ``rising``!
+Numpy's `diff() <https://numpy.org/doc/stable/reference/generated/numpy.diff.html>`_ helps by
+taking the difference between each value and subsequent value.
 We then adjust this array so that it has the same length as the original ``activity``,
-and store the result as our detected ``spikes``!
-
+and store the result as our detected ``spikes``, by prepending a 0 with 
+`hstack() <https://numpy.org/doc/stable/reference/generated/numpy.hstack.html>`_.
 
 .. code-block:: python
   :emphasize-lines: 12
@@ -555,22 +557,18 @@ inspecting the ``Spikes`` table:
    (15 tuples)
 
 Even better, we can see the values of ``SpikeDetectionParam`` together by :ref:`joining 
-<python-join>` the two tables together:
+<python-join>` the two tables together. We can also add the same filtering we previously
+learned, by specifying a date:
 
 .. code-block:: python
 
-  >> spikes * sdp
+  >> spikes * sdp & 'session_date = "2017-05-15"'
   *mouse_id    *session_date  *sdp_id    count     threshold     spikes
   +----------+ +------------+ +--------+ +-------+ +-----------+ +--------+
   0            2017-05-15     0          27        0.9           <BLOB>
-  0            2017-05-19     0          21        0.9           <BLOB>
-  5            2017-01-05     0          14        0.9           <BLOB>
-  100          2017-05-25     0          35        0.9           <BLOB>
-  100          2017-06-01     0          15        0.9           <BLOB>
   0            2017-05-15     1          128       0.1           <BLOB>
-  0            2017-05-19     1          135       0.1           <BLOB>
-     ...
-   (15 tuples)
+  0            2017-05-15     2          13        1.3           <BLOB>
+   (3 tuples)
 
 .. note:: python
   By default preview of the table will show only the first 7 entries in the table. If you

@@ -385,10 +385,12 @@ above the threshold. This returns an array of 0's and 1's where 1's corresponds 
 where neuron's activity was above the threshold, storing this as ``above_thrs``.
 
 We then find out all the timebins at which the activity goes from 0 to 1, signifying times
-at which the neuron's activity **raised above the threshold**, storing this into ``rising``! 
-We then adjust this array so that it has the same length as the original ``activity``,
-and store the result as our detected ``spikes``! We store the computed ``spikes`` and ``count`` by inserting into this (``Spieks``)
-table!!
+at which the neuron's activity **raised above the threshold**, storing this into ``rising``!
+MATLAB's built-in `diff() <https://www.mathworks.com/help/matlab/ref/diff.html>`_ function
+gives us the difference between adjacent values, which is an array one-item shorter that the input.
+We adjust this array so that it has the same length as the original ``activity``,
+and store the result as our detected ``spikes``! We store the computed ``spikes`` and ``count`` 
+by inserting into this (``Spikes``) table!!
 
 .. code-block:: matlab
   :emphasize-lines: 10-13
@@ -600,11 +602,12 @@ inspecting the ``Spikes`` table:
   15 tuples (0.0409 s)
 
 Even better, we can see the values of ``SpikeDetectionParam`` together by :ref:`joining 
-<matlab-join>` the two tables together:
+<matlab-join>` the two tables together. We can also add the same filtering we previously
+learned, by specifying a date:
 
 .. code-block:: matlab
 
-  >> spikes * sdp
+  >> spikes * sdp & 'session_date = "2017-05-15"'
 
   ans = 
 
@@ -615,21 +618,12 @@ Even better, we can see the values of ``SpikeDetectionParam`` together by :ref:`
     ________    ____________    ______    _____    _________    ________
 
       0         '2017-05-15'    0          27      0.9          '=BLOB='
-      0         '2017-05-19'    0          21      0.9          '=BLOB='
-      5         '2017-01-05'    0          14      0.9          '=BLOB='
-    100         '2017-05-25'    0          35      0.9          '=BLOB='
-    100         '2017-06-01'    0          15      0.9          '=BLOB='
       0         '2017-05-15'    1         128      0.1          '=BLOB='
-      0         '2017-05-19'    1         135      0.1          '=BLOB='
-      5         '2017-01-05'    1         132      0.1          '=BLOB='
-    100         '2017-05-25'    1         142      0.1          '=BLOB='
-    100         '2017-06-01'    1         151      0.1          '=BLOB='
-      0         '2017-05-15'    2          13      1.3          '=BLOB='
-      0         '2017-05-19'    2           5      1.3          '=BLOB='
-
+      0         '2017-05-15'    1          13      1.3          '=BLOB='
+    
           ...
 
-  15 tuples (0.0533 s)
+  3 tuples (0.00604 s)
 
   
 

@@ -33,11 +33,24 @@ by just running the following in the terminal:
 
 
 and that's it! This should trigger the installation of the latest DataJoint and all of its dependencies. 
-Depending on how your Python environment is configured, you may have to prefix `sudo` to the above command.
+Depending on how your Python environment is configured, you may want to install within a 
+`virtual environment <https://virtualenv.pypa.io/en/latest/user_guide.html>`_, installing for the user. Optionally:
+
+.. code-block:: bash
+
+    $ pip install virtualenv
+    $ virtualenv venv/ && source venv/bin/activate
+    $ (venv) pip3 install datajoint
+    $ # Later:
+    $ deactivate # to exit from venv
 
 Verify that the package was properly installed by starting a Python 3 console, and try importing the 
 `datajoint` package:
 
+.. code-block:: bash
+
+    $ python3
+    
 .. code-block:: python
 
   >>> import datajoint as dj
@@ -122,7 +135,7 @@ and that's it!
 
 .. note::
   If you have signed up to and are connected to the tutorial database on 
-  `DataJoint.io <https://datajoint.io>`_, it is strongly recommeded that you 
+  `Accounts.DataJoint.io <https://accounts.datajoint.io/login>`_, it is strongly recommeded that you 
   change your password from the temporary password that was sent to you in 
   the email!
 
