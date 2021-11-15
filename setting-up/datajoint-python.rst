@@ -33,7 +33,7 @@ by just running the following in the terminal:
 
 
 and that's it! This should trigger the installation of the latest DataJoint and all of its dependencies. 
-Depending on how your Python environment is configured, you want to install within a 
+Depending on how your Python environment is configured, you may want to install within a 
 `virtual environment <https://virtualenv.pypa.io/en/latest/user_guide.html>`_, installing for the user. Optionally:
 
 .. code-block:: bash
