@@ -73,7 +73,7 @@ the dependent/child table (``Session``). This way, every entry in the ``Session`
 Dependency in action
 --------------------
 Now that we have the ``Session`` table defined, let's populate this table with some data, using techniques we
-learned in:doc:`populating-data`. Remember that we can only perform experiments on a mouse that exists in the ``Mouse`` table:
+learned :doc:`inserting-data`. Remember that we can only perform experiments on a mouse that exists in the ``Mouse`` table:
 
 .. code-block:: python
 
