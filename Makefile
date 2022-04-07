@@ -25,4 +25,3 @@ site:
 	make html
 	cp -r $(BUILDDIR)/html site
 	@echo "Build finished. The HTML pages are in site/html."
-

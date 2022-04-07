@@ -1,0 +1,23 @@
+#docker-compose -f docker-compose.yaml up 
+
+version: "2.4"
+x-net: &net
+  networks:
+      - main
+services:
+  fakeservices.datajoint.io:
+    <<: *net
+    image: datajoint/nginx:v0.1.3
+    environment:
+      - ADD_djtutorial_TYPE=STATIC
+      - ADD_djtutorial_PREFIX=/
+    volumes:
+      - ./_build/html:/usr/share/nginx/html
+    ports:
+      - "443:443"
+      - "80:80"
+networks:
+  main:
+
+  #add a volumes portion to mount the _build/html directory to "/usr/share/nginx/html"
+
