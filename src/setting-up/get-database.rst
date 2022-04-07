@@ -5,13 +5,11 @@ In this section we will explore various options on how we can get connected to a
 for use throughout the tutorial and beyond. We will review three major options, from the easiest (and 
 most recommended) to the more involved but highly customizable.
 
-Connect to DataJoint.io_ (Recommended)
---------------------------------------
+Connect to `DataJoint.io <https://accounts.datajoint.io>`_ (Recommended)
+------------------------------------------------------------------------
 
-.. _DataJoint.io: https://datajoint.io
-
-If you want to get started trying out DataJoint as quickly as possible with minimal setup, sign up for 
-`DataJoint.io <https://accounts.datajoint.io/login>`_ account to gain access to the free tutorial database server in addition 
+If you want to get started trying out DataJoint as quickly as possible with minimal setup, sign up for a free 
+`DataJoint account <https://accounts.datajoint.io/login>`_ to gain access to the free tutorial database server in addition 
 to ready-to-play interactive Python playground environment based on Jupyter. 
 
 
